@@ -1,4 +1,6 @@
 Client::Application.routes.draw do
+  get "login/index"
+
   resources :promos
 
 
@@ -43,6 +45,7 @@ Client::Application.routes.draw do
 
   resources :users
 
+  resources :login
 
   get "home/index"
 

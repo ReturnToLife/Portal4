@@ -1,0 +1,7 @@
+<%= form_tag("/login", :method => "post") do %>
+  <%= label_tag(:log, "login:") %>
+  <%= text_field_tag(:log) %>
+  <%= label_tag(:pass, "pass:") %>
+  <%= password_field_tag(:pass) %>
+  <%= submit_tag("Connect") %>
+<% end %>

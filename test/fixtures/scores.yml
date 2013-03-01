@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  score_pos: 1
+  score_neg: 1
+
+two:
+  score_pos: 1
+  score_neg: 1

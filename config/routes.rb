@@ -1,4 +1,49 @@
 Client::Application.routes.draw do
+  resources :promos
+
+
+  resources :schools
+
+
+  resources :votes
+
+
+  resources :scores
+
+
+  resources :comment_gossips
+
+
+  resources :comment_events
+
+
+  resources :comment_articles
+
+
+  resources :gossips
+
+
+  resources :authors
+
+
+  resources :tags
+
+
+  resources :events
+
+
+  resources :articles
+
+
+  resources :jobs
+
+
+  resources :groups
+
+
+  resources :users
+
+
   get "home/index"
 
   resources :home

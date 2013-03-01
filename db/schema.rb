@@ -11,6 +11,137 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20130228231421) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "publication_date"
+    t.string   "thumbnail"
+    t.integer  "nb_comments"
+    t.text     "content"
+    t.string   "category"
+    t.integer  "status"
+    t.integer  "score_id"
+    t.integer  "event_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "authors", :force => true do |t|
+    t.integer  "article_id"
+    t.integer  "user_id"
+    t.string   "job"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comment_articles", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "article_id"
+    t.integer  "score_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comment_events", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "event_id"
+    t.integer  "score_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comment_gossips", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "gossip_id"
+    t.integer  "score_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events", :force => true do |t|
+    t.datetime "date"
+    t.integer  "user_id"
+    t.integer  "score_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "gossips", :force => true do |t|
+    t.string   "text"
+    t.integer  "score_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "title"
+    t.integer  "parent_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.string   "job"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "promos", :force => true do |t|
+    t.string   "title"
+    t.integer  "school_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "schools", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "scores", :force => true do |t|
+    t.integer  "score_pos"
+    t.integer  "score_neg"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "login"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.integer  "promo_id"
+    t.integer  "school_id"
+    t.string   "city"
+    t.string   "photo_url"
+    t.string   "avatar_url"
+    t.integer  "uid"
+    t.string   "report_url"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "score_id"
+    t.integer  "user_id"
+    t.integer  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

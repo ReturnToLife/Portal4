@@ -6,8 +6,8 @@ class LoginController < ApplicationController
 def create
     uri = URI.parse('http://0.0.0.0:3000/api_session.json')
 
-    @login = params[:log]
-    @response = Net::HTTP.post_form(uri, {"login" => @login, "password" => params[:pass]})
+    @login = params[:login]
+    @response = Net::HTTP.post_form(uri, {"login" => @login, "password" => params[:password]})
 
   session[:api_token] = @response.body
    session[:user_login] = @login

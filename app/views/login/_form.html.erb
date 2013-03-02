@@ -1,7 +1,14 @@
-<%= form_tag("/login", :method => "post") do %>
-  <%= label_tag(:log, "login:") %>
-  <%= text_field_tag(:log) %>
-  <%= label_tag(:pass, "pass:") %>
-  <%= password_field_tag(:pass) %>
-  <%= submit_tag("Connect") %>
+<%= form_tag("/login", :method => "post", :id => "form-login") do %>
+<ul class="inputs black-input large focus"> 
+  <li>
+    <span class="icon-user mid-margin-right"></span>
+    <%= text_field_tag(:login, :class => "input-unstyled", :placeholder => "Login", :autocomplete => "off") %>
+  </li>
+  <li>
+    <span class="icon-lock mid-margin-right"></span> 
+    <%= password_field_tag(:password, :class => "input-unstyled", :placeholder => "Password", :autocomplete => "off") %>
+  </li>
+  <%= submit_tag("Connect", :class => "button glossy full-width huge") %>
+</ul>
 <% end %>
+

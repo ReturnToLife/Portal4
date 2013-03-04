@@ -5,7 +5,6 @@ function        error_shower(type, message, content) {
     $("#content").html('<h1>Error ' + type + '</h1>'
 		       + '<h3>' + message + '</h3>'
 		       + '<p>' + content + '</p>');
-    console.log("hello");
     $("content").show();
 }
 
@@ -31,6 +30,7 @@ function        wsquery(url, callback, type, callback_error) {
 }
 
 function        getuser(login, callback) {
+    login = typeof login !== 'undefined' ? type : ''; // default value
     wsquery('user/' + login, callback);
 }
 

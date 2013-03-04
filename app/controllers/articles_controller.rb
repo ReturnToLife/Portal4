@@ -3,6 +3,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
+    @show_header = true
+    @show_right_side = false
+    @show_left_side = false
     
     uri = URI.parse('http://0.0.0.0:3000/articles.json')
     
@@ -27,7 +30,7 @@ class ArticlesController < ApplicationController
   def show
     uri = URI.parse('http://0.0.0.0:3000/articles/1.json')
 
-   @response = Net::HTTP.get(uri)
+    @response = Net::HTTP.get(uri)
   
     @article = Article.new.from_json(@response)
 
@@ -57,17 +60,12 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
+    uri = URI.parse('http://0.0.0.0:3000/articles.json')
+
     @article = Article.new(params[:article])
 
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render json: @article, status: :created, location: @article }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
-    end
+    @response = Net::HTTP.post_form(uri, {"article" => render(:json => @article)})
+
   end
 
   # PUT /articles/1

@@ -1,22 +1,23 @@
 <h1>Listing articles</h1>
 
-<table>
+<table class="table responsive-table" id="sorting-advanced">
+  <thead>
   <tr>
-    <th>Title</th>
-    <th>User</th>
-    <th>Publication date</th>
-    <th>Thumbnail</th>
-    <th>Nb comments</th>
-    <th>Content</th>
-    <th>Category</th>
-    <th>Status</th>
-    <th>Score</th>
-    <th>Event</th>
+    <th scope="col" width="10%">Title</th>
+    <th scope="col" width="10%">User</th>
+    <th scope="col" width="10%">Publication date</th>
+    <th scope="col" width="10%">Thumbnail</th>
+    <th scope="col" width="10%">Nb comments</th>
+    <th scope="col" width="10%">Content</th>
+    <th scope="col" width="10%">Category</th>
+    <th scope="col" width="10%">Status</th>
+    <th scope="col" width="10%">Score</th>
+    <th scope="col" width="10%">Event</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
-
+  </thead>
 <% @articles.each do |article| %>
   <tr>
     <td><%= article.title %></td>

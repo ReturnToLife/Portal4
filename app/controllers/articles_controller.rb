@@ -1,4 +1,5 @@
 require 'json'
+require 'net/http'
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
@@ -87,9 +88,12 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = Article.find(params[:id])
-    @article.destroy
-
+    uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id])
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Delete.new(uri.path)
+    response = http.request(request)
+ #   puts '#################################### DESTROY'
+ #  @request = Net::HTTP.new('127.0.0.1:3000').delete('/articles/' + params[:id])
     respond_to do |format|
       format.html { redirect_to articles_url }
       format.json { head :no_content }

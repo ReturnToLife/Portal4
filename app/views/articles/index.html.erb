@@ -30,9 +30,9 @@
     <td><%= article.status %></td>
     <td><%= article.score_id %></td>
     <td><%= article.event_id %></td>
-    <td><%= link_to 'Show', article %></td>
-    <td><%= link_to 'Edit', edit_article_path(article) %></td>
-    <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><a href="/articles/<%= article.id %>">Show</a>|</td>
+    <td><%= link_to 'Edit', edit_article_path(article) %>|</td>
+    <td><a href="/articles/<%= article.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a></td>
   </tr>
 <% end %>
 </table>

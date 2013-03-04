@@ -68,7 +68,9 @@
 	<!-- These custom tasks are examples, you need to edit them to show actual pages -->
 	<meta name="msapplication-task" content="name=Agenda;action-uri=http://www.display-inline.fr/demo/developr/agenda.html;icon-uri=http://www.display-inline.fr/demo/developr/img/favicons/favicon.ico">
 	<meta name="msapplication-task" content="name=My profile;action-uri=http://www.display-inline.fr/demo/developr/profile.html;icon-uri=http://www.display-inline.fr/demo/developr/img/favicons/favicon.ico">
-  <%= csrf_meta_tags %>
+
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
 
@@ -76,23 +78,7 @@
   <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
   
   <!-- Button to open/hide menu -->
-  <a href="javascript:void(0);" id="open-menu"><span>Menu</span></a>
 
-  <!-- Button to open/hide shortcuts -->
-  <a href="javascript:void(0);" id="open-shortcuts"><span class="icon-thumbs"></span></a>
-
-  <!-- Main content -->
-  <section role="main" id="main">
-
-    <noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
-
-    <hgroup id="main-title" class="thin">
-
-
-      </section>
-  <!-- End main content -->
-
-<%= render :partial => 'layouts/header' if @show_header %>
   <%= @content_for_layout %>
 <%= render :partial => 'layouts/left_side' if @show_left_side %>
 <%= render :partial => 'layouts/right_side/wrapper' if @show_right_side %>

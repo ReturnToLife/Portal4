@@ -30,7 +30,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render :partial => 'layouts/header' if @show_header %>
+  <%= @content_for_layout %>
+<%= render :partial => 'layouts/left_side' if @show_left_side %>
+<%= render :partial => 'layouts/right_side/wrapper' if @show_right_side %>
 <%= yield %>
 
 </body>

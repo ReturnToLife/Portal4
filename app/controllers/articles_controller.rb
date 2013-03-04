@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
     @show_header = true
     @show_right_side = false
     @show_left_side = false
-    
+    @carbon = true
     uri = URI.parse('http://0.0.0.0:3000/articles.json')
     
     @response = Net::HTTP.get(uri)
@@ -29,7 +29,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    uri = URI.parse('http://0.0.0.0:3000/articles/1.json')
+    @carbon = true
+    uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '.json')
 
     @response = Net::HTTP.get(uri)
   
@@ -45,6 +46,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   # GET /articles/new.json
   def new
+    @carbon = true
     @article = Article.new
 
     respond_to do |format|
@@ -72,6 +74,7 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.json
   def update
+    @carbon = true
     @article = Article.find(params[:id])
 
     respond_to do |format|
@@ -88,12 +91,11 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
+    @carbon = true
     uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id])
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Delete.new(uri.path)
     response = http.request(request)
- #   puts '#################################### DESTROY'
- #  @request = Net::HTTP.new('127.0.0.1:3000').delete('/articles/' + params[:id])
     respond_to do |format|
       format.html { redirect_to articles_url }
       format.json { head :no_content }

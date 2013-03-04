@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class='no-js <%= 
+if @linen == true
+'linen'
+else if @carbon == true
+'carbon'
+ end 
+end%>'  lang="en">
  <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -30,6 +36,7 @@
 	<%= stylesheet_link_tag('12003860', :media => 'only all and (min-width: 1200px)') %>
 	<%= stylesheet_link_tag('2x3860', :media => 'only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)') %>
 
+	<%= stylesheet_link_tag('login3860', :media => "screen") %>
 	<%= stylesheet_link_tag 'styles/agenda3860' %>
 	<%= stylesheet_link_tag 'styles/dashboard3860' %>
 	<%= stylesheet_link_tag 'styles/form3860' %>
@@ -37,6 +44,8 @@
 	<%= stylesheet_link_tag 'styles/progress-slider3860' %>
 	<%= stylesheet_link_tag 'styles/switches3860' %>
 	<%= javascript_include_tag "modernizr.custom" %>
+
+	<%= stylesheet_link_tag 'styles/table3860' %>
 
 	<!-- For Modern Browsers -->
 	<link rel="shortcut icon" href="img/favicons/favicon.png">
@@ -82,12 +91,9 @@
   <%= @content_for_layout %>
 <%= render :partial => 'layouts/left_side' if @show_left_side %>
 <%= render :partial => 'layouts/right_side/wrapper' if @show_right_side %>
+
+
 <%= yield %>
-
-
-
-
-
 
 
 <!-- JavaScript at the bottom for fast page loading -->

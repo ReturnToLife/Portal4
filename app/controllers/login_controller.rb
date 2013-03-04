@@ -15,7 +15,7 @@ class LoginController < ApplicationController
   end
   def show
     @show_header = true
-    @show_right_side = true
+    @show_right_side = false
     @show_left_side = true
   end
 end

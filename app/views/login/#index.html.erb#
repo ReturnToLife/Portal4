@@ -115,7 +115,7 @@
                   else
                   {
                    window.location.href = "/login/" + data.responseText;
-                  } 
+                  }  formLogin.clearMessages();
                   //formLogin.clearMessages();
                   // displayError('Error while contacting server, please try again');
                 }

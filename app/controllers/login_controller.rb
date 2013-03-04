@@ -8,7 +8,7 @@ class LoginController < ApplicationController
     uri = URI.parse('http://0.0.0.0:3000/api_session.json')
     
     @login = params[:login]
-    @response = Net::HTTP.post_form(uri, {"login" => @login, "password" => params[:password]})
+    @response = Net::HTTP.post_form(uri, {"login" => @login, "password" => params[:pass]})
     
     session[:api_token] = @response.body
     session[:user_login] = @login
@@ -21,6 +21,8 @@ class LoginController < ApplicationController
   def show
     @show_header = true
     @show_right_side = true
-    @show_left_side = true
+    @show_left_side = false
+
+    
   end
 end

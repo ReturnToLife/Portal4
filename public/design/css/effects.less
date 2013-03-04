@@ -1,0 +1,80 @@
+
+.gradient (@startcolor: black, @endcolor: white, @direction: left) {
+    -o-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    background: -webkit-gradient(
+        linear,
+        @direction top, right top,
+        from(@startcolor),
+        to(@endcolor)
+        );
+    background: -webkit-linear-gradient(
+        @direction,
+        @startcolor,
+        @endcolor
+        );
+    background: -moz-linear-gradient(
+        @direction,
+        @startcolor,
+        @endcolor
+        );
+    background: -o-linear-gradient(
+        @direction,
+        @startcolor,
+        @endcolor
+        );
+    background: linear-gradient(
+        @direction,
+        @startcolor,
+        @endcolor
+        );
+}
+
+.black_gradient (@direction: left) {
+    .gradient(black, darkslategray, @direction);
+}
+
+.white_gradient (@direction: left) {
+    .gradient(white, #ccc, @direction);
+}
+
+.cancel_radius_topleft {
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
+}
+
+.cancel_radius_topright {
+    -webkit-border-top-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    border-top-right-radius: 0;
+}
+
+.cancel_radius_bottright {
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    border-bottom-right-radius: 0;
+}
+
+.cancel_radius_bottleft {
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-bottom-left-radius: 0;
+}
+
+.radius (@1, @2, @3, @4){
+    -webkit-border-top-left-radius: @1;
+    -webkit-border-top-right-radius: @2;
+    -webkit-border-bottom-right-radius: @4;
+    -webkit-border-bottom-left-radius: @3;
+    -moz-border-radius-topleft: @1;
+    -moz-border-radius-topright: @2;
+    -moz-border-radius-bottomright: @4;
+    -moz-border-radius-bottomleft: @3;
+    border-top-left-radius: @1;
+    border-top-right-radius: @2;
+    border-bottom-right-radius: @4;
+    border-bottom-left-radius: @3;
+}

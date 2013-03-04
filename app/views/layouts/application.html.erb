@@ -2,8 +2,31 @@
 <html>
 <head>
   <title>Client</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+
+	<%= stylesheet_link_tag 'reset3860' %>
+	<%= stylesheet_link_tag 'style3860' %>
+	<%= stylesheet_link_tag 'colors3860' %>
+	<%= stylesheet_link_tag('print3860', :media => 'print') %>
+
+
+	<%= stylesheet_link_tag('4803860', :media => 'only all and (min-width: 480px)') %>
+	<%= stylesheet_link_tag('7683860', :media => 'only all and (min-width: 768px)') %>
+	<%= stylesheet_link_tag('9923860', :media => 'only all and (min-width: 992px)') %>
+	<%= stylesheet_link_tag('12003860', :media => 'only all and (min-width: 1200px)') %>
+	<%= stylesheet_link_tag('2x3860', :media => 'only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)') %>
+
+	<%= stylesheet_link_tag 'styles/agenda3860' %>
+	<%= stylesheet_link_tag 'styles/dashboard3860' %>
+	<%= stylesheet_link_tag 'styles/form3860' %>
+	<%= stylesheet_link_tag 'styles/modal3860' %>
+	<%= stylesheet_link_tag 'styles/progress-slider3860' %>
+	<%= stylesheet_link_tag 'styles/switches3860' %>
+	<%= javascript_include_tag "modernizr.custom" %>
+
+
+
+
+
   <%= csrf_meta_tags %>
 </head>
 <body>

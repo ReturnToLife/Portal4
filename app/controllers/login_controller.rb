@@ -13,4 +13,7 @@ def create
    session[:user_login] = @login
 
 end
+
+def show
+end
 end

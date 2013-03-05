@@ -33,6 +33,7 @@ Client::Application.routes.draw do
 
   resources :events
 
+  match "articles/list" => "articles#list"
 
   resources :articles
 
@@ -48,6 +49,9 @@ Client::Application.routes.draw do
   resources :login
 
   get "home/index"
+
+
+
 
   resources :home
 

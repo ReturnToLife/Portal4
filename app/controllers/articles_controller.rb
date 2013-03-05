@@ -26,6 +26,33 @@ class ArticlesController < ApplicationController
     end
   end
 
+
+
+  # GET /articles/list
+  # GET /articles/list.json
+  def list
+    @show_header = true
+    @show_right_side = false
+    @show_left_side = false
+    @carbon = true
+    uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])
+    
+    @response = Net::HTTP.get(uri)
+    
+    @tab = JSON.parse(@response)
+    
+        
+    @articles = Array.new
+    @tab.each do |a|
+      @articles.push(Article.new(a))
+    end
+   
+    respond_to do |format|
+      format.html # list.html.erb
+      format.json { render json: @articles }
+    end
+  end
+
   # GET /articles/1
   # GET /articles/1.json
   def show

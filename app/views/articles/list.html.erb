@@ -1,0 +1,25 @@
+
+
+<h1>News</h1>
+
+<% @articles.each do |article| %>
+<details class="details margin-bottom open" open="" style="width: 40%; margin-left: 30% ">
+<summary aria-expanded="true" role="button" style="-moz-user-select: none;" tabindex="0"><%= article.title %></summary>
+<div class="with-padding" style="display: block;">
+    
+User ID :    <%= article.user_id %><br/>
+Publication Date :    <%= article.publication_date %><br/>
+Content :    <%= article.content %><br/>
+     <a href="/articles/<%= article.id %>">Show</a>
+    <%= link_to 'Edit', edit_article_path(article) %>
+    <a href="/articles/<%= article.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a>
+  </tr>
+</div>
+
+</details>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Article', new_article_path %>

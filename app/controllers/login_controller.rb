@@ -22,7 +22,11 @@ class LoginController < ApplicationController
     @show_header = true
     @show_right_side = true
     @show_left_side = false
-
-    
+  end
+  def destroy
+    uri = URI.parse('http://0.0.0.0:3000/api_session.json?auth_token=' + session[:api_token])
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Delete.new(uri.path)
+    response = http.request(request)
   end
 end

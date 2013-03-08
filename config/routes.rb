@@ -13,15 +13,6 @@ Client::Application.routes.draw do
   resources :scores
 
 
-  resources :comment_gossips
-
-
-  resources :comment_events
-
-
-  resources :comment_articles
-
-
   resources :gossips
 
 

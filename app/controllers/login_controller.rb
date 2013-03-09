@@ -24,9 +24,17 @@ class LoginController < ApplicationController
     @show_left_side = false
   end
   def destroy
-    uri = URI.parse('http://0.0.0.0:3000/api_session.json?auth_token=' + session[:api_token])
+    uri = URI.parse('http://0.0.0.0:3000/api_session.json/1?auth_token=' + session[:api_token])
+    puts 'before'
     http = Net::HTTP.new(uri.host, uri.port)
+    puts 'after'
     request = Net::HTTP::Delete.new(uri.path)
     response = http.request(request)
+    session[:api_token] = nil
+    session[:user_login] = nil
+    respond_to do |format|
+      format.html
+      format.json { head :no_content }
+    end
   end
 end

@@ -8,6 +8,12 @@ class ArticlesController < ApplicationController
     @show_right_side = false
     @show_left_side = false
     @carbon = true
+
+    if (session[:api_token] == nil)
+      respond_to do |format|
+        format.html { redirect_to login_url, notice: 'You need to log in' }
+      end
+    end
     uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])
     
     @response = Net::HTTP.get(uri)

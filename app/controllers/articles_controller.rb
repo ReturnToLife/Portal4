@@ -4,23 +4,14 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @show_header = true
-    @show_right_side = false
-    @show_left_side = false
-    @carbon = true
-
     if (session[:api_token] == nil)
       respond_to do |format|
         format.html { redirect_to login_url, notice: 'You need to log in' }
       end
     end
     uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])
-    
     @response = Net::HTTP.get(uri)
-    
     @tab = JSON.parse(@response)
-    
-        
     @articles = Array.new
     @tab.each do |a|
       @articles.push(Article.new(a))
@@ -32,22 +23,12 @@ class ArticlesController < ApplicationController
     end
   end
 
-
-
   # GET /articles/list
   # GET /articles/list.json
   def list
-    @show_header = true
-    @show_right_side = false
-    @show_left_side = false
-    @carbon = true
-    uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])
-    
+    uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])    
     @response = Net::HTTP.get(uri)
-    
     @tab = JSON.parse(@response)
-    
-        
     @articles = Array.new
     @tab.each do |a|
       @articles.push(Article.new(a))
@@ -132,6 +113,26 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to articles_url }
       format.json { head :no_content }
+    end
+  end
+
+  def filterbylogin
+    if (session[:api_token] == nil)
+      respond_to do |format|
+        format.html { redirect_to login_url, notice: 'You need to log in' }
+      end
+    end
+    uri = URI.parse('http://0.0.0.0:3000/articles/filterbylogin/' + params[:login] + '.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token]})
+    @tab = JSON.parse(@response.body)
+    @articles = Array.new
+    @tab.each do |a|
+      @articles.push(Article.new(a))
+    end
+   
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @articles }
     end
   end
 end

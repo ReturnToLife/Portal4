@@ -1,4 +1,112 @@
-<%= javascript_include_tag "application" %>
-<%= csrf_meta_tags %>
-<%= yield %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>return (to_life);</title>
+    <%# <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag 'bootstrap.min.css' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'bootstrap-responsive.css' %>
+    <%= stylesheet_link_tag 'style.css' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
+    <div id="main">
+      <div class="row-fluid">
+
+        <aside id="menu">
+          <nav>
+
+            <a href=".">
+              <div id="test" class="button">
+		<%= image_tag('icons/home.png', :alt => "Home") %>
+                <span class="content hidden_phone">Home</span>
+              </div>
+            </a>
+
+            <a href="/search">
+              <div class="button">
+                <%= image_tag('icons/search.png', :alt => "Search") %>
+                <span class="content hidden_phone">Search</span>
+              </div>
+            </a>
+
+            <a href="/events">
+              <div class="button">
+                <%= image_tag('icons/calendar.png', :alt => "Events") %>
+                <span class="content hidden_phone">Events</span>
+              </div>
+            </a>
+
+            <a href="/entities">
+              <div class="button">
+                <%= image_tag('icons/show_thumbnails.png', :alt => "Entities") %>
+                <span class="content hidden_phone">All Entities</span>
+              </div>
+            </a>
+
+            <div class="separator">
+              <%= image_tag('icons/show_big_thumbnails.png', :alt => "My Entities") %>
+              <span class="content hidden_phone">My Entities</span>
+            </div>
+
+            <a href="/entities/lateb">
+              <div class="button">
+                <%= image_tag('entities/icons/lateb.png', :alt => "Lateb", :class => "asso_icon") %>
+                <span class="content hidden_phone">Lateb</span>
+              </div>
+            </a>
+
+            <div class="separator">
+              <%= image_tag('icons/dashboard.png', :alt => "Dashboard") %>
+              <span class="content hidden_phone">Dashboard</span>
+            </div>
+
+            <a href="/profile">
+              <div class="button">
+                <%= image_tag('icons/user.png', :alt => "Me") %>
+                <span class="content hidden_phone">Profile</span>
+              </div>
+            </a>
+
+            <a href="/articles">
+              <div class="button">
+                <%= image_tag('icons/edit.png', :alt => "Add-Article") %>
+                <span class="content hidden_phone">Exprime</span>
+              </div>
+            </a>
+
+            <a href="/gossip">
+              <div class="button">
+                <%= image_tag('icons/fire.png', :alt => "Gossip") %>
+                <span class="content hidden_phone">Gossip</span>
+              </div>
+            </a>
+
+            <a href="/preferences">
+              <div class="button">
+                <%= image_tag('icons/cogwheels.png', :alt => "Preferences") %>
+                <span class="content hidden_phone">Preferences</span>
+              </div>
+            </a>
+
+            </nav>
+          </aside> <!-- menu -->
+
+        <div id="content">
+
+	  <%= yield %>
+
+        </div> <!-- content -->
+        
+      </div>
+    </div> <!-- main -->
+
+    <%= javascript_include_tag 'jquery.js' %>
+    <%= javascript_include_tag 'bootstrap.min.js' %>
+    <%= javascript_include_tag 'preset.js' %>
+    <%= javascript_include_tag 'jquery.jsonp.js' %>
+    <%= javascript_include_tag 'epitech.js' %>
+    <%= javascript_include_tag 'home.js' %>
+  </body>
+</html>

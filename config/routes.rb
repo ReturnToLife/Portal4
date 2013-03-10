@@ -35,6 +35,8 @@ Client::Application.routes.draw do
 
   match "articles/list" => "articles#list"
 
+  match "articles/filterbylogin/:login" => "articles#filterbylogin"
+
   resources :articles
 
 

@@ -51,5 +51,34 @@
 </p>
 
 
+<p>
+  <b>Comments:</b>
+  <% @article.acomments.each do |comment| %>
+<p>
+  <b>By : </b>
+  <%= comment.user %>
+</p>
+<p>
+  <b>comment : </b>
+  <%= comment.body %>
+</p>
+<p>
+  <a href="/articles/<%= comment.article_id %>/acomments/<%= comment.id %>" data-method="delete" data-confirm="Are you sure?">Delete Comment</a>
+</p>
+<% end %>
+<h2>Add a comment:</h2>
+<%= form_for([@article, @article.acomments.build]) do |f| %>
+<b><%= @login %>, make your comment!</b>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

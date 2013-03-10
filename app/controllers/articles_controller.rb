@@ -60,10 +60,14 @@ class ArticlesController < ApplicationController
     uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '.json?auth_token=' + session[:api_token])
 
     @response = Net::HTTP.get(uri)
+    json = ActiveSupport::JSON.decode(@response)
   
-    @article = Article.new.from_json(@response)
-
-
+    @article = Article.new(json['article'])
+    json['comments'].each do |comment|
+      @article.acomments.append(Acomment.new(comment))
+    end
+    @login = session[:user_login]
+    puts session
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @article }

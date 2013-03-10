@@ -26,7 +26,9 @@ Client::Application.routes.draw do
 
   match "articles/list" => "articles#list"
 
-  resources :articles
+  resources :articles do
+    resources :acomments
+  end
 
 
   resources :jobs

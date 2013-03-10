@@ -30,7 +30,7 @@ Client::Application.routes.draw do
     resources :acomments
   end
 
-
+  
   resources :jobs
 
 

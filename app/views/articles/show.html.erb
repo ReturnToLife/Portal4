@@ -7,22 +7,12 @@
 
 <p>
   <b>User:</b>
-  <%= @article.user_id %>
+  <%= @author_name %>
 </p>
 
 <p>
   <b>Publication date:</b>
   <%= @article.publication_date %>
-</p>
-
-<p>
-  <b>Thumbnail:</b>
-  <%= @article.thumbnail %>
-</p>
-
-<p>
-  <b>Nb comments:</b>
-  <%= @article.nb_comments %>
 </p>
 
 <p>
@@ -36,34 +26,18 @@
 </p>
 
 <p>
-  <b>Status:</b>
-  <%= @article.status %>
-</p>
-
-<p>
-  <b>Score:</b>
-  <%= @article.score_id %>
-</p>
-
-<p>
-  <b>Event:</b>
-  <%= @article.event_id %>
-</p>
-
-
-<p>
   <b>Comments:</b>
-  <% @article.acomments.each do |comment| %>
+  <% @comments.each do |comment| %>
 <p>
   <b>By : </b>
-  <%= comment.user %>
+  <%= comment['user_login'] %>
 </p>
 <p>
   <b>comment : </b>
-  <%= comment.body %>
+  <%= comment['body'] %>
 </p>
 <p>
-  <a href="/articles/<%= comment.article_id %>/acomments/<%= comment.id %>" data-method="delete" data-confirm="Are you sure?">Delete Comment</a>
+  <a href="/articles/<%= @article.id %>/acomments/<%= comment['id'] %>" data-method="delete" data-confirm="Are you sure?">Delete Comment</a>
 </p>
 <% end %>
 <h2>Add a comment:</h2>

@@ -18,17 +18,12 @@ class ArticlesController < ApplicationController
     
     @response = Net::HTTP.get(uri)
     
-    @tab = JSON.parse(@response)
-    
-        
-    @articles = Array.new
-    @tab.each do |a|
-      @articles.push(Article.new(a))
-    end
-   
+    @array = JSON.parse(@response)
+    puts @array
+
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @articles }
+      format.json { render json: @array }
     end
   end
 
@@ -64,19 +59,15 @@ class ArticlesController < ApplicationController
   def show
     @carbon = true
     uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '.json?auth_token=' + session[:api_token])
-
     @response = Net::HTTP.get(uri)
-    json = ActiveSupport::JSON.decode(@response)
-  
-    @article = Article.new(json['article'])
-    json['comments'].each do |comment|
-      @article.acomments.append(Acomment.new(comment))
-    end
+    hash =  ActiveSupport::JSON.decode(@response)
+    @comments = hash["comments"]
+    @article = Article.new(hash["article"])
     @login = session[:user_login]
-    puts session
+    @author_name = hash["author_name"]
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @article }
+      format.json { render json: {:article => @article, :comments => @comments, :login => @login, :author_name => @author_name }}
     end
   end
 
@@ -130,7 +121,6 @@ class ArticlesController < ApplicationController
   def destroy
     
     uri = URI.parse('http://0.0.0.0:3000/articles/delete/' + params[:id] + '.json')
-
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token]})
 
     respond_to do |format|

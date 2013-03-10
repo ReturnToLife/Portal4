@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
   # GET /articles/list
   # GET /articles/list.json
   def list
-    uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])    
+    uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
     @tab = JSON.parse(@response)
     @articles = Array.new

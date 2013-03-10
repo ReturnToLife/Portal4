@@ -1,34 +1,77 @@
 
+<div class="row-fluid" id="home">
 
-<h1>Listing articles</h1>
+  <div class="span9" id="page">
 
-<table id="sorting-example2" class="simple-table responsive-table responsive-table-on">
-  <thead>
-  <tr>
-    <th scope="col" width="10%">Title</th>
-    <th scope="col" width="10%">User</th>
-    <th scope="col" width="10%">Publication date</th>
-    <th scope="col" width="10%">Content</th>
-    <th scope="col" width="10%">Category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <% @array.each do |article| %>
-  <tr>
-    <td><%= article['title'] %></td>
-    <td><%= article['author_name'] %></td>
-    <td><%= article['publication_date'] %></td>
-    <td><%= article['content'] %></td>
-    <td><%= article['category'] %></td>
-    <td><a href="/articles/<%= article['id'] %>">Show</a>|
-    <a href="/articles/<%= article['id']%>/edit">Edit</a>|
-    <a href="/articles/<%= article['id'] %>" data-method="delete" data-confirm="Are you sure?">Delete</a></td>
-  </tr>
-<% end %>
-</table>
+    <div class="articles_details">
+      <h1><%= image_tag('icons/more_items.png') %> Articles</h1>
 
-<br />
+      <% @articles.each do |article| %>
+      <article class="article_details categ <%= article.category %>" id="article_id">
+        <div class="row-fluid">
+          <figure class="span5">
+            <%= image_tag('samples/pizza.jpg') %>
+          </figure>
+          <div class="span7">
+            <div class="row-fluid">
+              <h3 class="span9"><%= article.title %></h3>
+              <div class="span3 badges">
+                <a href="#"><span class="badge badge-info"><%= article.nb_comments %> <i class="icon-comment icon-white"></i></span></a>
+                <a href="#"><span class="badge badge-success"><%= article.score_id %> <i class="icon-fire icon-white"></i></span></a>
+              </div>
+            </div>
+            <div class="content">
+	      <%= article.content %>
+              <a href="/articles/<%= article.id %>"><button class="btn">Read more</button></a>
+            </div> <!-- content -->
+          </div>
+        </div>
+        <ul class="thumbnails hidden-phone">
+          <li class="span3">
+            <a href="#" class="thumbnail">
+              <%= image_tag('samples/happy.jpg') %>
+            </a>
+          </li>
+          <li class="span3">
+            <a href="#" class="thumbnail">
+              <%= image_tag('samples/oh.jpg') %>
+            </a>
+          </li>
+          <li class="span3">
+            <a href="#" class="thumbnail">
+              <%= image_tag('samples/game.jpg') %>
+            </a>
+          </li>
+          <li class="span3">
+            <div class="thbtags">
+              <span class="badge">2014</span>
+              <span class="badge">2015</span>
+              <span class="badge">Paris</span>
+              <span class="badge">Nantes</span>
+              <span class="badge">Lilles</span>
+              <%= image_tag('entities/icons/lateb.png', :class => (article.category + "_icon"), :alt => "Lateb") %>
+              <h6>Tags</h6>
+              <div class="tags">
+                <a href="#"><span class="tag">Party</span></a> - 
+                <a href="#"><span class="tag">Epic</span></a> - 
+                <a href="#"><span class="tag">Sausage</span></a> - 
+                <a href="#"><span class="tag">Buffet</span></a> - 
+                <a href="#"><span class="tag">Candy Canes</span></a> - 
+                <a href="#"><span class="tag">Party</span></a> - 
+                <a href="#"><span class="tag">Beer</span></a> - 
+                <a href="#"><span class="tag">Alcohol</span></a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </article> <!-- article_details -->
+      <% end %>
 
-<%= link_to 'New Article', new_article_path %>
+    </div> <!-- article_details -->
+
+  </div> <!-- page -->
+
+  <aside class="span3" id="side">
+  </aside> <!-- side -->
+  
+</div>

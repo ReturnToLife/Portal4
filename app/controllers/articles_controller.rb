@@ -8,6 +8,12 @@ class ArticlesController < ApplicationController
     @show_right_side = false
     @show_left_side = false
     @carbon = true
+
+    if (session[:api_token] == nil)
+      respond_to do |format|
+        format.html { redirect_to login_url, notice: 'You need to log in' }
+      end
+    end
     uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])
     
     @response = Net::HTTP.get(uri)
@@ -122,11 +128,11 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @carbon = true
-    uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '?auth_token=' + session[:api_token])
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Delete.new(uri.path)
-    response = http.request(request)
+    
+    uri = URI.parse('http://0.0.0.0:3000/articles/delete/' + params[:id] + '.json')
+
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token]})
+
     respond_to do |format|
       format.html { redirect_to articles_url }
       format.json { head :no_content }

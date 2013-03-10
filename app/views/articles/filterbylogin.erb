@@ -1,0 +1,43 @@
+
+
+<h1>Listing articles with login <%= params[:login]%></h1>
+
+<table id="sorting-example2" class="simple-table responsive-table responsive-table-on">
+  <thead>
+  <tr>
+    <th scope="col" width="10%">Title</th>
+    <th scope="col" width="10%">User</th>
+    <th scope="col" width="10%">Publication date</th>
+    <th scope="col" width="10%">Thumbnail</th>
+    <th scope="col" width="10%">Nb comments</th>
+    <th scope="col" width="10%">Content</th>
+    <th scope="col" width="10%">Category</th>
+    <th scope="col" width="10%">Status</th>
+    <th scope="col" width="10%">Score</th>
+    <th scope="col" width="10%">Event</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= article.title %></td>
+    <td><%= article.user_id %></td>
+    <td><%= article.publication_date %></td>
+    <td><%= article.thumbnail %></td>
+    <td><%= article.nb_comments %></td>
+    <td><%= article.content %></td>
+    <td><%= article.category %></td>
+    <td><%= article.status %></td>
+    <td><%= article.score_id %></td>
+    <td><%= article.event_id %></td>
+    <td><a href="/articles/<%= article.id %>">Show</a>|</td>
+    <td><%= link_to 'Edit', edit_article_path(article) %>|</td>
+    <td><a href="/articles/<%= article.id %>" data-method="delete" data-confirm="Are you sure?">Delete</a></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

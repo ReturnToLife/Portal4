@@ -29,6 +29,7 @@ Client::Application.routes.draw do
   resources :articles do
     resources :acomments
   end
+  match "articles/filterbylogin/:login" => "articles#filterbylogin"
 
   
   resources :jobs

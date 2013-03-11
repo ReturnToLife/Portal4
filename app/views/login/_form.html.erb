@@ -1,5 +1,7 @@
 <%= form_tag("/login", :method => "post") do %>
- 
+<% if @errorlogin == true %>
+the password is incorrect.
+<% end %> 
 <%= label_tag(:login, "Login:") %>
 <%= text_field_tag(:login) %>
 <%= label_tag(:pass, "Password:") %>

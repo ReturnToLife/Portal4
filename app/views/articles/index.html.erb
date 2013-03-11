@@ -57,22 +57,22 @@
       <h1><%= image_tag('icons/more_items.png') %> Articles</h1>
 
       <% @articles.each do |article| %>
-      <article class="article_details categ <%= article.category %>" id="<%= article.id %>">
+      <article class="article_details categ <%= article['category'] %>" id="<%= article.id %>">
         <div class="row-fluid">
           <figure class="span5">
             <%= image_tag('samples/pizza.jpg') %>
           </figure>
           <div class="span7">
             <div class="row-fluid">
-              <h3 class="span9"><%= article.title %></h3>
+              <h3 class="span9"><%= article['title'] %></h3>
               <div class="span3 badges">
-                <a href="#"><span class="badge badge-info"><%= article.nb_comments %> <i class="icon-comment icon-white"></i></span></a>
-                <a href="#"><span class="badge badge-success"><%= article.score_id %> <i class="icon-fire icon-white"></i></span></a>
+                <a href="#"><span class="badge badge-info"><%= article['nb_comments'] %> <i class="icon-comment icon-white"></i></span></a>
+                <a href="#"><span class="badge badge-success"><%= article['score_id'] %> <i class="icon-fire icon-white"></i></span></a>
               </div>
             </div>
             <div class="content">
-	      <%= article.content %>
-              <a href="/articles/<%= article.id %>"><button class="btn">Read more</button></a>
+	      <%= article['content'] %>
+              <a href="/articles/<%= article['id'] %>"><button class="btn">Read more</button></a>
             </div> <!-- content -->
           </div>
         </div>
@@ -99,7 +99,7 @@
               <span class="badge">Paris</span>
               <span class="badge">Nantes</span>
               <span class="badge">Lilles</span>
-              <%= image_tag('entities/icons/lateb.png', :class => (article.category + "_icon"), :alt => "Lateb") %>
+              <%= image_tag('entities/icons/lateb.png', :class => (article['category'] + "_icon"), :alt => "Lateb") %>
               <h6>Tags</h6>
               <div class="tags">
                 <a href="#"><span class="tag">Party</span></a> - 

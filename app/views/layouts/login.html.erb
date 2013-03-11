@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>return (to_life); :: Login</title>
+    <%= stylesheet_link_tag 'bootstrap.min.css' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag 'bootstrap-responsive.css' %>
+    <%= csrf_meta_tags %>
+    <style>
+    </style>
+  </head>
+  <body>
+
+    <div id="main">
+      <div id="login" class="row-fluid">
+	<div class="span6">
+	  <%= image_tag('logo_home.png', :class => 'logo') %>
+	</div>
+	<div class="span6 login">
+	  <h1>return (to_life);</h1>
+	  <h3>/* Le Portail des &Eacute;tudiants */</h3>
+	  <%= yield %>
+	</div>
+      </div> <!-- login -->
+    </div> <!-- main -->
+
+    <%= javascript_include_tag 'jquery.js' %>
+    <%= javascript_include_tag 'bootstrap.min.js' %>
+  </body>
+</html>

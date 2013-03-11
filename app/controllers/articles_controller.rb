@@ -77,14 +77,14 @@ class ArticlesController < ApplicationController
   def create
     uri = URI.parse('http://0.0.0.0:3000/articles.json')
     @article = Article.new(params[:article])
-    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "article" => render(:json => @article)})
-
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "article" => @article.to_json})
+    @article = Article.new.from_json(@response.body)
+    redirect_to :action => "show", :id => @article.id
   end
 
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-puts "LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOLLLDDLDL"
     @article = Article.new(params[:article])
     uri = URI.parse('http://0.0.0.0:3000/articles/' + @article.id + '.json' )
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "article" => render(:json => @article)})

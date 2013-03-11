@@ -2,7 +2,6 @@ require 'json'
 require 'net/http'
 class AcommentsController < ApplicationController
   def create
-    @carbon = true
     uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:article_id] + '/acomments.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], :body => params[:acomment][:body]})
     redirect_to "/articles/" + params[:article_id]

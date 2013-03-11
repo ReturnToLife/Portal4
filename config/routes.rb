@@ -25,11 +25,11 @@ Client::Application.routes.draw do
   resources :events
 
   match "articles/list" => "articles#list"
-
+  match "articles/filterbylogin/:login" => "articles#filterbylogin"
   resources :articles do
     resources :acomments
   end
-  match "articles/filterbylogin/:login" => "articles#filterbylogin"
+ 
 
   
   resources :jobs

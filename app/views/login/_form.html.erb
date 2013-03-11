@@ -1,12 +1,24 @@
-<%= form_tag("/login", :method => "post") do %>
-<% if @errorlogin == true %>
-the password is incorrect.
-<% end %> 
-<%= label_tag(:login, "Login:") %>
-<%= text_field_tag(:login) %>
-<%= label_tag(:pass, "Password:") %>
-<%= password_field_tag(:pass) %>
-<%= submit_tag("Connect") %>
- 
-<% end %>
+<%= form_tag("/login", :method => "post", :class => 'form-horizontal') do %>
+<div class="control-group">
+  <%= label_tag(:login, "Login Epitech", :class => 'control-label') %>
+  <div class="controls">
+    <%= text_field_tag(:login, nil, :placeholder => 'exempl_e', :class => 'input-small') %>
+  </div>
+</div>
+<div class="control-group<% if @errorlogin == true %> error<% end %>">
+  <%= label_tag(:pass, "PPP Password", :class => 'control-label') %>
+  <div class="controls">
+    <%= password_field_tag(:pass, nil, :placeholder => ('●' * 8), :class => 'input-small') %>
+    <% if @errorlogin == true %>
+    <span class="help-inline">Incorrect password</span>
+    <% end %>
+  </div>
+</div>
+<div class="control-group">
+  <div class="controls">
+    <%= submit_tag("Enter", :class => 'btn btn-success') %>
+  </div>
+</div>
+<small><a href="http://ionis-users-informations.paysdu42.fr/" target="_blank">La classe d'authentification est opensource</a></small>
 
+<% end %>

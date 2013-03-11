@@ -69,7 +69,7 @@ class ArticlesController < ApplicationController
     uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
     hash =  ActiveSupport::JSON.decode(@response)
-    @article = Article.new(hash["article"])
+    @id = hash["article"]["id"]
   end
 
   # POST /articles

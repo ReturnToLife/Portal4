@@ -1,4 +1,6 @@
-<%= form_tag('/articles/' + @article.id.chr)  %>
+<%= form_for(@article, :url => "/article/1", :method => :post) do |f| %>
+<%= form_for @article, :as => :article, :url => post_path(@post), :method => :put, :html => { :class => "edit_post", :id => "edit_post_45" } do |f| %>
+
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -55,3 +57,4 @@
     <%= f.submit %>
   </div>
 
+<% end %>

@@ -1,0 +1,196 @@
+
+@import "effects.less";
+@import "categories.less";
+
+///////////////////
+// Basic Content //
+///////////////////
+
+body {
+    background-color: #eee;
+    font-fanily: Helvetica, Verdana, Tahoma, sans-serif;
+    padding: 0;
+}
+
+figure {
+     margin: 0;
+}
+
+// Separate the page in two colomn
+
+#menu {
+    margin-left: 0;
+    width: 14.893617021276595%;
+    float: left;
+}
+
+#content {
+    width: 82.97872340425532%;
+    margin-left: 2.127659574468085%;
+    float: left;
+}
+
+.glyphicon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+    line-height: 14px;
+}
+
+//////////
+// Menu //
+//////////
+
+#menu {
+    background: #ccc;
+    color: white;
+    box-shadow: 3px 0px 5px #aaa;
+
+    a {
+        text-decoration: none;
+    }
+
+    img {
+        max-width: 22px;
+    }
+
+    .button, .separator {
+        color: #555;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-shadow: 1px 1px #999;
+        white-space:nowrap;
+        .content {
+            margin-left: 5%;
+        }
+    }
+
+    .button {
+        @startcolor: #ccc;
+        @endcolor: #eee;
+        .gradient(@startcolor, @endcolor, top);
+        margin: 5%;
+        padding: 7%;
+        border-radius:10px;
+        box-shadow: inset 0px 0px 5px 1px grey;
+        &:hover {
+            text-decoration: none;
+            box-shadow: inset 0px 0px 10px 2px grey;
+            text-shadow: 0 0 0.2em #999;
+        }
+    }
+    .separator {
+        @startcolor: #aaa;
+        @endcolor: #ccc;
+        @bordercolor: #777;
+        border-top: 1px solid @bordercolor;
+        border-bottom: 1px solid @startcolor;
+        padding: 1%;
+        line-height: normal;
+        .gradient(@startcolor, @endcolor, top);
+        img {
+            max-width: 12px;
+            margin-left: 7%;
+        }
+    }
+}
+
+#content {
+}
+
+///////////////
+// Home Page //
+///////////////
+
+#home {
+    #page {
+        padding-top: 1%;
+        .carousel .item {
+            text-align: center;
+            img {
+                height: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        .carousel-control {
+            top: 25%;
+            background: none;
+            border: none;
+        }
+    }
+
+    #side {
+    }
+    
+}
+
+///////////////////////
+// User Profile Page //
+///////////////////////
+
+#profile {
+    padding: 3%;
+    h3 {
+        text-align: right;
+    }
+    #top {
+        #photo {
+            text-align: center;
+        }
+        #badges {
+            text-align: center;
+            .big-badge {
+                text-align: center;
+                padding: 10px;
+                margin: 2px;
+            }
+        }
+    }
+    #details {
+        @bcolor: #829eba;
+        margin-top: 5%;
+        color: darken(@bcolor, 40%);
+        .detail {
+            border: 1px solid @bcolor;
+            border-radius: 10px;
+            .gradient(#aad4ff, #e2f0ff, top);
+            margin-bottom: 5%;
+            h4 {
+                margin: 0;
+                padding: 4%;
+                text-align: center;
+                border-bottom: 2px dashed @bcolor;
+            }
+            .articles_details {
+                padding: 4%;
+                h4 { border: none; }
+            }
+            ul {
+                list-style-type: none;
+                margin-left: 0;
+                li {
+                    border-bottom: 1px solid @bcolor;
+                    padding: 4%;
+                    a {
+                        color: inherit;
+                        &:hover {
+                            text-decoration: none;
+                            &:after {
+                                content: '►';
+                            }
+                        }
+                    }
+                }
+                .up strong { color: green; }
+                .down strong { color: red; }
+            }
+            .more {
+                text-align: center;
+                opacity: 0.8;
+            }
+        }
+    }
+}
+

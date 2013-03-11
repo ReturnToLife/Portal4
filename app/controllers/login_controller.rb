@@ -32,6 +32,9 @@ class LoginController < ApplicationController
     @show_right_side = true
     @show_left_side = false
   end
+  def view
+    render :layout => 'login'
+  end
   def destroy
     uri = URI.parse('http://0.0.0.0:3000/api_session.json/1?auth_token=' + session[:api_token])
     puts 'before'

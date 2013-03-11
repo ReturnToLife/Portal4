@@ -39,7 +39,6 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @carbon = true
     uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
     hash =  ActiveSupport::JSON.decode(@response)
@@ -67,16 +66,17 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = Article.find(params[:id])
+    uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash =  ActiveSupport::JSON.decode(@response)
+    @article = Article.new(hash["article"])
   end
 
   # POST /articles
   # POST /articles.json
   def create
     uri = URI.parse('http://0.0.0.0:3000/articles.json')
-
     @article = Article.new(params[:article])
-
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "article" => render(:json => @article)})
 
   end
@@ -84,18 +84,11 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.json
   def update
-    @carbon = true
-    @article = Article.find(params[:id])
-
-    respond_to do |format|
-      if @article.update_attributes(params[:article])
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
-    end
+puts "LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOLLLDDLDL"
+    @article = Article.new(params[:article])
+    uri = URI.parse('http://0.0.0.0:3000/articles/' + @article.id + '.json' )
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "article" => render(:json => @article)})
+    redirect_to :action => "show", :id => @article.id
   end
 
   # DELETE /articles/1

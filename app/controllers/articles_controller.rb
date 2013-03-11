@@ -12,10 +12,10 @@ class ArticlesController < ApplicationController
     uri = URI.parse('http://0.0.0.0:3000/articles.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
     
-    @array = JSON.parse(@response)
+    @articles = JSON.parse(@response)
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @array }
+      format.json { render json: @articles }
     end
   end
 

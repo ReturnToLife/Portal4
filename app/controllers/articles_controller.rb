@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
     @comments = hash["comments"]
     @article = Article.new(hash["article"])
     @login = session[:user_login]
-    @author_name = hash["author_name"]
+    @author_name = hash["login"]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: {:article => @article, :comments => @comments, :login => @login, :author_name => @author_name }}

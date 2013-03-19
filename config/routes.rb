@@ -40,7 +40,10 @@ Client::Application.routes.draw do
 
   resources :users
 
+  match "login/signout" => "login#signout"
+
   resources :login
+
 
   get "home/index"
 

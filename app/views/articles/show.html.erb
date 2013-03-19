@@ -1,58 +1,121 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @article.title %>
-</p>
+<div class="articles_details">
+  <article>
+    <div class="row-fluid" id="article-top">
+      <div class="span3" id="article-thumbnail">
 
-<p>
-  <b>User:</b>
-  <%= @author_name %>
-</p>
+      </div> <!-- article-thumbnail -->
+      <div class="span9" id="article-info">
+	<div class="row-fluid">
+	  <div class="span9" id="article-title">
+	    <h1><%= @article.title %></h1>
+	  </div> <!-- article-title -->
+	  <div class="span3" id="article-badges">
+            <a href="#">
+	      <span class="badge badge-info big-badge">
+		<% if defined?@article['nb_comments'] %>0
+		<% else %><%= @article['nb_comments'] %><% end %>
+		<%= image_tag('icons/white_conversation.png') %>
+	      </span>
+	    </a>
+            <a href="#">
+	      <span class="badge badge-success big-badge">
+		<% if defined?@article['score_id'] %>0
+		<% else %><%= @article['score_id'] %><% end %>
+		<%= image_tag('icons/white_fire.png') %>
+	      </span>
+	    </a>
+	  </div> <!-- article-badges -->
+	</div>
+	<div class="row-fluid" id="article-details">
+	  <div class="span4" id="article-info">
+	    <small><%= @article.publication_date %></small>
+	    <h3>Authors</h3>
+	    <ul>
+	      <li><%= @author_name %> (Writer)</li>
 
-<p>
-  <b>Publication date:</b>
-  <%= @article.publication_date %>
-</p>
+	    </ul>
+	  </div> <!-- article-info -->
+	  <div class="span3" id="article-audience">
+	    <h3>Audience</h3>
+	    <ul>
 
-<p>
-  <b>Content:</b>
-  <%= @article.content %>
-</p>
+	    </ul>
+	  </div> <!-- article-audience -->
+	  <div class="span5" id="article-tags">
+	    <h3>Tags</h3>
 
-<p>
-  <b>Category:</b>
-  <%= @article.category %>
-</p>
+	  </div>
+	</div> <!-- article-details -->
+      </div> <!-- article-info -->
+    </div> <!-- article-top -->
+    <div class="row-fluid" id="article-content" style="margin-top: 1%;">
+      <div class="span9" id="article-text">
+	<div class="article_details categ <%= @article.category %> <%= @article.category %>_miniradius">
+          <div class="content" style="margin: 2%; min-height: 350px">
+	    <%= @article['content'] %>
+	  </div>
+	</div>
+      </div> <!-- article-text -->
+      <div class="span3" id="article-media">
+        <ul class="thumbnails hidden-phone">
+          <li class="span12">
+            <a href="#" class="thumbnail">
 
-<p>
-  <b>Comments:</b>
-  <% @comments.each do |comment| %>
-<p>
-  <b>By : </b>
-  <%= comment['user_login'] %>
-</p>
-<p>
-  <b>comment : </b>
-  <%= comment['body'] %>
-</p>
-<p>
-  <a href="/articles/<%= @article.id %>/acomments/<%= comment['id'] %>" data-method="delete" data-confirm="Are you sure?">Delete Comment</a>
-</p>
-<% end %>
-<h2>Add a comment:</h2>
-<%= form_for([@article, @article.acomments.build]) do |f| %>
-<b><%= @login %>, make your comment!</b>
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+            </a>
+          </li>
+          <li class="span12">
+            <a href="#" class="thumbnail">
+
+            </a>
+          </li>
+	</ul>
+      </div> <!-- article-media -->
+    </div> <!-- artcle-content -->
+    <div class="article-more-media">
+    </div> <!-- article-more-media -->
+  </article>
+</div>
+<div class="row-fluid" id="social">
+  <div class="span6">
+    <div id="comments" class="well social-bar">
+      <h2><%= image_tag('icons/conversation.png') %> Comments</h2>
+      <hr>
+      <% @comments.each do |comment| %>
+      <div class="comment">
+	<div class="pull-right">
+	  <small>
+	    <%= image_tag('icons/bin.png', :style => 'height: 10px;') %>
+	    <a href="/articles/<%= @article.id %>/acomments/<%= comment['id'] %>"
+	       data-method="delete" data-confirm="Are you sure?">
+	      Delete Comment</a>
+	  </small>
+	</div>
+	<h5><%= comment['user_login'] %> said:</h5>
+	<p><%= comment['body'] %></p>
+      </div>
+      <hr>
+      <% end %>
+      <h3>Add a comment</h3>
+      <%= form_for([@article, @article.acomments.build], :class => 'form-horizontal') do |f| %>
+      <div class="control-group">
+	<%= f.label(:body, "Content", :class => 'control-label') %>
+	<div class="controls">
+	    <%= f.text_area(:body, :rows => 4, :cols => 4) %>
+	</div>
+      </div>
+      <div class="control-group">
+	<div class="controls">
+	  <%= f.submit("Add a comment", :class => 'btn btn-success') %>
+	</div>
+      </div>
+      <% end %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-</p>
 
+</div>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
+

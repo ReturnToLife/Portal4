@@ -1,12 +1,16 @@
+<% if @logout == true %>
+<span class="help-inline">You have been logged out. Bye!</span>
+    <% end %>
 <%= form_tag("/login", :method => "post", :class => 'form-horizontal') do %>
 <div class="control-group">
-  <%= label_tag(:login, "Login Epitech", :class => 'control-label') %>
+  <%= label_tag(:login, "Login", :class => 'control-label') %>
+    
   <div class="controls">
     <%= text_field_tag(:login, nil, :placeholder => 'exempl_e', :class => 'input-small') %>
   </div>
 </div>
 <div class="control-group<% if @errorlogin == true %> error<% end %>">
-  <%= label_tag(:pass, "PPP Password", :class => 'control-label') %>
+  <%= label_tag(:pass, "Password", :class => 'control-label') %>
   <div class="controls">
     <%= password_field_tag(:pass, nil, :placeholder => ('●' * 8), :class => 'input-small') %>
     <% if @errorlogin == true %>
@@ -19,6 +23,5 @@
     <%= submit_tag("Enter", :class => 'btn btn-success') %>
   </div>
 </div>
-<small><a href="http://ionis-users-informations.paysdu42.fr/" target="_blank">La classe d'authentification est opensource</a></small>
 
 <% end %>

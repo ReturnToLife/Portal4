@@ -6,7 +6,8 @@ Client::Application.routes.draw do
 
   resources :schools
 
-
+  match "votes/forArticle" => "votes#voteForArticle", :via => :post
+  match "votes/unvoteforArticle" => "votes#unvoteForArticle", :via => :post
   resources :votes
 
 

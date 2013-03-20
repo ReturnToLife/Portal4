@@ -77,6 +77,10 @@
     </div> <!-- article-more-media -->
   </article>
 </div>
+<%= @votes %>
+<%= link_to 'Vote for', { :controller => 'votes', :action => 'voteForArticle', :idArticle => @article['id'] }, { :method => :post } %>
+<%= link_to 'Unvote for', { :controller => 'votes', :action => 'unvoteForArticle', :idArticle => @article['id'] }, { :method => :post } %>
+
 <div class="row-fluid" id="social">
   <div class="span6">
     <div id="comments" class="well social-bar">

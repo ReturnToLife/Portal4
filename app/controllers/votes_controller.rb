@@ -1,4 +1,18 @@
 class VotesController < ApplicationController
+
+  def voteForArticle
+    uri = URI.parse('http://0.0.0.0:3000/score/voteArticle.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idArticle" => params[:idArticle]})
+    redirect_to :controller => "articles", :action => 'show', :id => params[:idArticle]
+    
+  end
+  def unvoteForArticle
+    uri = URI.parse('http://0.0.0.0:3000/score/unvoteArticle.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idArticle" => params[:idArticle]})
+    redirect_to :controller => "articles", :action => 'show', :id => params[:idArticle]
+    
+  end
+
   # GET /votes
   # GET /votes.json
   def index

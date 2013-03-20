@@ -13,6 +13,19 @@ class VotesController < ApplicationController
     
   end
 
+  def voteForAcomment
+    uri = URI.parse('http://0.0.0.0:3000/score/voteAcomment.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idAcomment" => params[:idAcomment]})
+    redirect_to :controller => "articles", :action => 'show', :id => params[:idArticle]
+    
+  end
+  def unvoteForAcomment
+    uri = URI.parse('http://0.0.0.0:3000/score/unvoteAcomment.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idAcomment" => params[:idAcomment]})
+    redirect_to :controller => "articles", :action => 'show', :id => params[:idArticle]
+    
+  end
+
   # GET /votes
   # GET /votes.json
   def index

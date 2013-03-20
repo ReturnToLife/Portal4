@@ -95,9 +95,16 @@
 	       data-method="delete" data-confirm="Are you sure?">
 	      Delete Comment</a>
 	  </small>
+	  <small>
+	    <%= link_to 'Vote for', { :controller => 'votes', :action => 'voteForAcomment', :idAcomment => comment['id'], :idArticle => @article['id'] }, { :method => :post } %>
+	  </small>
+	  <small>
+	    <%= link_to 'Unvote for', { :controller => 'votes', :action => 'unvoteForAcomment', :idAcomment => comment['id'], :idArticle => @article['id'] }, { :method => :post } %>
+	  </small>
 	</div>
 	<h5><%= comment['user_login'] %> said:</h5>
 	<p><%= comment['body'] %></p>
+	<p><%= comment['cvotes'] %></p>
       </div>
       <hr>
       <% end %>

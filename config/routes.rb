@@ -8,6 +8,9 @@ Client::Application.routes.draw do
 
   match "votes/forArticle" => "votes#voteForArticle", :via => :post
   match "votes/unvoteforArticle" => "votes#unvoteForArticle", :via => :post
+
+  match "votes/forAcomment" => "votes#voteForAcomment", :via => :post
+  match "votes/unvoteforAcomment" => "votes#unvoteForAcomment", :via => :post
   resources :votes
 
 

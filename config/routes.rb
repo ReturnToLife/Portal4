@@ -11,6 +11,10 @@ Client::Application.routes.draw do
 
   match "votes/forAcomment" => "votes#voteForAcomment", :via => :post
   match "votes/unvoteforAcomment" => "votes#unvoteForAcomment", :via => :post
+
+  match "votes/forGossip" => "votes#voteForGossip", :via => :post
+  match "votes/unvoteforGossip" => "votes#unvoteForGossip", :via => :post
+  match "votes/againstGossip" => "votes#voteAgainstGossip", :via => :post
   resources :votes
 
 

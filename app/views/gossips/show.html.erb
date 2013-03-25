@@ -2,19 +2,22 @@
 
 <p>
   <b>Text:</b>
-  <%= @gossip.text %>
+  <%= @gossip['text'] %>
 </p>
 
 <p>
   <b>Score:</b>
-  <%= @gossip.score_id %>
+  <%= @gossip['score_id'] %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @gossip.user_id %>
+  <%= @gossip['user_id'] %>
 </p>
 
+<%= @votes %>
+<%= link_to 'Vote for', { :controller => 'votes', :action => 'voteForGossip', :idGossip => @gossip['id'] }, { :method => :post } %>
+<%= link_to 'Unvote for', { :controller => 'votes', :action => 'unvoteForGossip', :idGossip => @gossip['id'] }, { :method => :post } %>
+<%= link_to 'Vote Against', { :controller => 'votes', :action => 'voteAgainstGossip', :idGossip => @gossip['id'] }, { :method => :post } %>
 
-<%= link_to 'Edit', edit_gossip_path(@gossip) %> |
 <%= link_to 'Back', gossips_path %>

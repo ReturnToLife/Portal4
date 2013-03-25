@@ -1,8 +1,14 @@
+require 'json'
+require 'net/http'
+
 class GossipsController < ApplicationController
   # GET /gossips
   # GET /gossips.json
   def index
-    @gossips = Gossip.all
+    uri = URI.parse('http://0.0.0.0:3000/gossips.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+
+    @gossips = JSON.parse(@response)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,8 +19,12 @@ class GossipsController < ApplicationController
   # GET /gossips/1
   # GET /gossips/1.json
   def show
-    @gossip = Gossip.find(params[:id])
+    uri = URI.parse('http://0.0.0.0:3000/gossips/' + params[:id] + '.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash = ActiveSupport::JSON.decode(@response)
 
+    @gossip = Gossip.new(hash["gossip"])
+    @votes = hash['votes']
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @gossip }
@@ -40,17 +50,12 @@ class GossipsController < ApplicationController
   # POST /gossips
   # POST /gossips.json
   def create
+    uri = URI.parse('http://0.0.0.0:3000/gossips.json')
     @gossip = Gossip.new(params[:gossip])
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "gossip" => @gossip.to_json})
 
-    respond_to do |format|
-      if @gossip.save
-        format.html { redirect_to @gossip, notice: 'Gossip was successfully created.' }
-        format.json { render json: @gossip, status: :created, location: @gossip }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @gossip.errors, status: :unprocessable_entity }
-      end
-    end
+    @gossip = Gossip.new.from_json(@response.body)
+    redirect_to :action => "show", :id => @gossip.id
   end
 
   # PUT /gossips/1

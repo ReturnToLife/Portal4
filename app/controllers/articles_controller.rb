@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
   def show
     uri = URI.parse('http://0.0.0.0:3000/articles/' + params[:id] + '.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
-    hash =  ActiveSupport::JSON.decode(@response)
+    hash = ActiveSupport::JSON.decode(@response)
     @comments = hash["comments"]
     @article = Article.new(hash["article"])
     @login = session[:user_login]
@@ -57,7 +57,6 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   # GET /articles/new.json
   def new
-    @carbon = true
     @article = Article.new
 
     respond_to do |format|
@@ -80,6 +79,7 @@ class ArticlesController < ApplicationController
     uri = URI.parse('http://0.0.0.0:3000/articles.json')
     @article = Article.new(params[:article])
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "article" => @article.to_json})
+
     @article = Article.new.from_json(@response.body)
     redirect_to :action => "show", :id => @article.id
   end

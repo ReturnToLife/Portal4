@@ -5,21 +5,18 @@
     <th>Text</th>
     <th>Score</th>
     <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Action</th>
   </tr>
 
-<% @gossips.each do |gossip| %>
+  <% @gossips.each do |gossip| %>
   <tr>
-    <td><%= gossip.text %></td>
-    <td><%= gossip.score_id %></td>
-    <td><%= gossip.user_id %></td>
-    <td><%= link_to 'Show', gossip %></td>
-    <td><%= link_to 'Edit', edit_gossip_path(gossip) %></td>
-    <td><%= link_to 'Destroy', gossip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= gossip['text'] %></td>
+    <td></td>
+    <td></td>
+    <td><a href="/gossips/<%= gossip['id'] %>"><button class="btn">Read more</button></a></td>
   </tr>
-<% end %>
+
+  <% end %>
 </table>
 
 <br />

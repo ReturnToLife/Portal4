@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="articles_details">
-  <article>
+  <article id="<%= @article['id'] %>">
     <div class="row-fluid" id="article-top">
       <div class="span3" id="article-thumbnail">
 	<%= image_tag('samples/pizza.jpg') %>
@@ -12,15 +12,23 @@
 	    <h1><%= @article.title %></h1>
 	  </div> <!-- article-title -->
 	  <div class="span3" id="article-badges">
-            <a href="#">
-	      <span class="badge badge-info big-badge">
+            <a href="#comments">
+	      <span class="badge badge-info big-badge"
+		    id="badge-comments">
 		<% if defined?@article['nb_comments'] %>0
 		<% else %><%= @article['nb_comments'] %><% end %>
 		<%= image_tag('icons/white_conversation.png') %>
 	      </span>
 	    </a>
-            <a href="#">
-	      <span class="badge badge-success big-badge">
+            <a href="#activity">
+	      <span class="badge badge-success big-badge badge-tooltip"
+		    id="badge-pop_score"
+		    data-placement="bottom"
+		    data-toggle="tooltip"
+		    data-original-title="
+					   <strong>munoz_v</strong> +10<br>
+					   <strong>deufo_c</strong> -1
+					 ">
 		<% if defined?@article['score_id'] %>0
 		<% else %><%= @article['score_id'] %><% end %>
 		<%= image_tag('icons/white_fire.png') %>
@@ -76,6 +84,8 @@
               <%= image_tag('samples/happy.jpg') %>
             </a>
           </li>
+	</ul>
+        <ul class="thumbnails hidden-phone">
           <li class="span12">
             <a href="#" class="thumbnail">
               <%= image_tag('samples/oh.jpg') %>

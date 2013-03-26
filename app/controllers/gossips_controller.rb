@@ -22,7 +22,9 @@ class GossipsController < ApplicationController
     uri = URI.parse('http://0.0.0.0:3000/gossips/' + params[:id] + '.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
     hash = ActiveSupport::JSON.decode(@response)
-
+    @comments = hash["comments"]
+    @login = session[:user_login]
+    @author_name = hash["login"]
     @gossip = Gossip.new(hash["gossip"])
     @votes = hash['votes']
     respond_to do |format|

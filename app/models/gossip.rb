@@ -11,5 +11,7 @@
 #
 
 class Gossip < ActiveRecord::Base
-  attr_accessible :score_id, :text, :user_id
+  attr_accessible :score_id, :text, :user_id, :created_at, :updated_at, :id
+
+  has_many :gcomments
 end

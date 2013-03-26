@@ -2,19 +2,67 @@
 
 <p>
   <b>Text:</b>
-  <%= @gossip.text %>
+  <%= @gossip['text'] %>
 </p>
 
 <p>
   <b>Score:</b>
-  <%= @gossip.score_id %>
+  <%= @gossip['score_id'] %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @gossip.user_id %>
+  <%= @gossip['user_id'] %>
 </p>
 
+<%= @votes %>
+<%= link_to 'Vote for', { :controller => 'votes', :action => 'voteForGossip', :idGossip => @gossip['id'] }, { :method => :post } %>
+<%= link_to 'Unvote for', { :controller => 'votes', :action => 'unvoteForGossip', :idGossip => @gossip['id'] }, { :method => :post } %>
+<%= link_to 'Vote Against', { :controller => 'votes', :action => 'voteAgainstGossip', :idGossip => @gossip['id'] }, { :method => :post } %>
+<div class="row-fluid" id="social">
+  <div class="span6">
+    <div id="comments" class="well social-bar">
+      <h2><%= image_tag('icons/conversation.png') %> Comments</h2>
+      <hr>
+      <% @comments.each do |comment| %>
+      <div class="comment">
+	<div class="pull-right">
+	  <small>
+	    <%= image_tag('icons/bin.png', :style => 'height: 10px;') %>
+	    <a href="/gossips/<%= @gossip.id %>/gcomments/<%= comment['id'] %>"
+	       data-method="delete" data-confirm="Are you sure?">
+	      Delete Comment</a>
+	  </small>
+	  <small>
+	    <%= link_to 'Vote for', { :controller => 'votes', :action => 'voteForGcomment', :idGcomment => comment['id'], :idGossip => @gossip['id'] }, { :method => :post } %>
+	  </small>
+	  <small>
+	    <%= link_to 'Unvote for', { :controller => 'votes', :action => 'unvoteForGcomment', :idGcomment => comment['id'], :idGossip => @gossip['id'] }, { :method => :post } %>
+	  </small>
+	</div>
+	<h5><%= comment['user_login'] %> said:</h5>
+	<p><%= comment['body'] %></p>
+	<p><%= comment['cvotes'] %></p>
+      </div>
+      <hr>
+      <% end %>
+      <h3>Add a comment</h3>
+      <%= form_for([@gossip, @gossip.gcomments.build], :class => 'form-horizontal') do |f| %>
+      <div class="control-group">
+	<%= f.label(:body, "Content", :class => 'control-label') %>
+	<div class="controls">
+	    <%= f.text_area(:body, :rows => 4, :cols => 4) %>
+	</div>
+      </div>
+      <div class="control-group">
+	<div class="controls">
+	  <%= f.submit("Add a comment", :class => 'btn btn-success') %>
+	</div>
+      </div>
+      <% end %>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_gossip_path(@gossip) %> |
+</div>
+
 <%= link_to 'Back', gossips_path %>

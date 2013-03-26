@@ -26,6 +26,37 @@ class VotesController < ApplicationController
     
   end
 
+  def voteForGcomment
+    uri = URI.parse('http://0.0.0.0:3000/score/voteGcomment.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGcomment" => params[:idGcomment]})
+    redirect_to :controller => "gossips", :action => 'show', :id => params[:idGossip]
+    
+  end
+  def unvoteForGcomment
+    uri = URI.parse('http://0.0.0.0:3000/score/unvoteGcomment.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGcomment" => params[:idGcomment]})
+    redirect_to :controller => "gossips", :action => 'show', :id => params[:idGossip]
+    
+  end
+
+  def voteForGossip
+    uri = URI.parse('http://0.0.0.0:3000/score/voteGossip.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGossip" => params[:idGossip]})
+    redirect_to :controller => "gossips", :action => 'show', :id => params[:idGossip]
+  end
+  
+  def voteAgainstGossip
+    uri = URI.parse('http://0.0.0.0:3000/score/voteAgainstGossip.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGossip" => params[:idGossip]})
+    redirect_to :controller => "gossips", :action => 'show', :id => params[:idGossip]
+    
+  end
+  def unvoteForGossip
+    uri = URI.parse('http://0.0.0.0:3000/score/unvoteGossip.json')
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGossip" => params[:idGossip]})
+    redirect_to :controller => "gossips", :action => 'show', :id => params[:idGossip]
+    
+  end
   # GET /votes
   # GET /votes.json
   def index

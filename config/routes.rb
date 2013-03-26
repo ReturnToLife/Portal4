@@ -1,7 +1,6 @@
 Client::Application.routes.draw do
   resources :events
 
-
   get "login/index"
 
   resources :promos
@@ -14,15 +13,24 @@ Client::Application.routes.draw do
 
   match "votes/forAcomment" => "votes#voteForAcomment", :via => :post
   match "votes/unvoteforAcomment" => "votes#unvoteForAcomment", :via => :post
+
+  match "votes/forGossip" => "votes#voteForGossip", :via => :post
+  match "votes/unvoteforGossip" => "votes#unvoteForGossip", :via => :post
+  match "votes/againstGossip" => "votes#voteAgainstGossip", :via => :post
+
+  match "votes/forGcomment" => "votes#voteForGcomment", :via => :post
+  match "votes/unvoteforGcomment" => "votes#unvoteForGcomment", :via => :post
+
   resources :votes
 
 
   resources :scores
 
 
-  resources :gossips
-
-
+  resources :gossips do
+    resources :gcomments
+  end
+    
   resources :authors
 
 

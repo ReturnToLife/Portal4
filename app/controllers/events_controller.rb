@@ -11,8 +11,17 @@ class EventsController < ApplicationController
     end
     uri = URI.parse('http://0.0.0.0:3000/events.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
+
+    @tab = JSON.parse(@response)
+   
+    @events = Array.new
+    @tab.each do |a|
+      @events.push(Event.new(a))
+    end
     
-    @events = JSON.parse(@response)
+    @events_by_date = @events.group_by(&:start)
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
@@ -61,7 +70,7 @@ class EventsController < ApplicationController
     uri = URI.parse('http://0.0.0.0:3000/events.json')
     @event = Event.new(params[:event])
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "event" => @event.to_json})
-    print  "#########################"
+
     print @response.body
     @event = Event.new.from_json(@response.body)
     redirect_to("/events")

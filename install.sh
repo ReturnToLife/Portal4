@@ -15,7 +15,7 @@ mv jquery-latest.min.js app/assets/javascripts/jquery.js
 
 # install jquery JSONP
 wget https://raw.github.com/jaubourg/jquery-jsonp/master/src/jquery.jsonp.js
-mv jquery.jsonp.js js/
+mv jquery.jsonp.js app/assets/javascripts/
 
 # compile LESS files to CSS
 lessc -x public/less/style.less app/assets/stylesheets/style.css

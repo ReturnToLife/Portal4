@@ -1,4 +1,7 @@
 Client::Application.routes.draw do
+  resources :events
+
+
   get "login/index"
 
   resources :promos
@@ -24,9 +27,6 @@ Client::Application.routes.draw do
 
 
   resources :tags
-
-
-  resources :events
 
   match "articles/list" => "articles#list"
   match "articles/filterbylogin/:login" => "articles#filterbylogin"

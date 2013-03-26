@@ -1,6 +1,21 @@
 <h1>Editing event</h1>
 
-<%= render 'form' %>
+
+<%= form_for @event, :method => :put, :url => {:action => "edit"} do |f| %>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+<!--<%= render 'form' %> -->
 
 <%= link_to 'Show', @event %> |
 <%= link_to 'Back', events_path %>

@@ -22,11 +22,16 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+        uri = URI.parse('http://0.0.0.0:3000/events/' + params[:id] + '.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash = ActiveSupport::JSON.decode(@response)
+    @event = Event.new(hash["event"])
+    @login = session[:user_login]
+    @author_name = hash["login"]
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @event }
+      format.json {render json: {:event => @event, :login => @login, :author_name => @author_name }}
     end
   end
   # GET /events/new
@@ -42,7 +47,12 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
+    uri = URI.parse('http://0.0.0.0:3000/events/' + params[:id] + '.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash =  ActiveSupport::JSON.decode(@response)
+    @event = Event.new(hash["event"])
+    @login = session[:user_login]
+    @author_name = hash["login"]
   end
 
   # POST /events

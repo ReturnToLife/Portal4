@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #events .calendar {
   border-collapse: collapse;
-  width: 100%;
+  width: 60%;
 
   td, th {
     font-family: "Lucida Grande", arial, helvetica, sans-serif;
@@ -34,7 +34,7 @@
 #events #month {
   margin: 0;
   padding-bottom: 10px;
-  text-align: center;
+  text-align: left;
   font-size: 22px;
   a {
     text-decoration: none;

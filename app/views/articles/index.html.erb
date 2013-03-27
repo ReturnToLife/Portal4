@@ -3,6 +3,56 @@
 
   <div class="span9" id="page">
 
+
+    <div id="articles_showcase">
+      <%= image_tag('icons/heart.png', :id => "heart") %>
+      <div class="row-fluid">
+
+	<% array = ["general", "pedago", "labo", "asso"] %>
+	<% array.each_with_index do |category, idx_square| %>
+	  <%# todo: get articles of category %>
+          <div class="span6 square" id="<%= category %>_square">
+
+          <div id="Carousel<%= category %>" class="carousel slide">
+            <ol class="carousel-indicators">
+	      <% @articles.each_index do |idx| %>
+	      <li data-target="#Carousel<%= category %>"
+		  data-slide-to="<%= idx %>"
+		  class="<% if idx == 0 %>active<% end %>"></li>
+	      <% end %>
+            </ol>
+            <!-- Carousel items -->
+            <div class="carousel-inner">
+	      <% @articles.each_with_index do |article, idx| %>
+              <div class="<% if idx == 0 %>active <% end %>item">
+                <a href="#<%= article['id'] %>">
+		  <%= image_tag('http://www.seeing-stars.com/Images/Slides/GettyMalibu.JPG') %>
+                  <div class="carousel-caption">
+                    <h4><%= article['title'] %></h4>
+                    
+                  </div>
+                </a>
+              </div>
+	      <% end %>
+            </div>
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#Carousel<%= category %>" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#Carousel<%= category %>" data-slide="next">&rsaquo;</a>
+          </div>
+
+        </div>
+
+	<% if idx_square == 1 %>
+      </div>
+      <div class="row-fluid">
+	<% end %>
+
+    <% end %>
+      </div>
+    </div> <!-- articles_showcase -->
+
+
+
     <div class="articles_details">
       <h1><%= image_tag('icons/more_items.png') %> Articles</h1>
 
@@ -17,8 +67,25 @@
             <div class="row-fluid">
               <h3 class="span9"><%= article['title'] %></h3>
               <div class="span3 badges">
-                <a href="#"><span class="badge badge-info"><%= article['nb_comments'] %> <i class="icon-comment icon-white"></i></span></a>
-                <a href="#"><span class="badge badge-success"><%= article['score_id'] %> <i class="icon-fire icon-white"></i></span></a>
+                <a href="/articles/<%= article['id'] %>#comments">
+		  <span class="badge badge-info">
+		    <% if defined?article['nb_comments'] %>0
+		    <% else %><%= article['nb_comments'] %><% end %>
+		    <i class="icon-comment icon-white"></i>
+		  </span>
+		</a>
+                <a href="/articles/<%= article['id'] %>#activity">
+		  <span class="badge badge-success badge-tooltip"
+			data-toggle="tooltip"
+			data-placement="bottom"
+			data-original-title="
+					     <strong>munoz_v</strong> +10<br>
+					     <strong>deufo_c</strong> -1
+					     ">
+		    25 <%# todo %>
+		    <i class="icon-fire icon-white"></i>
+		  </span>
+		</a>
               </div>
             </div>
             <div class="content">

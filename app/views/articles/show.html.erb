@@ -25,11 +25,11 @@
 		    data-placement="bottom"
 		    data-toggle="tooltip"
 		    data-original-title="
-					   <strong>munoz_v</strong> +10<br>
-					   <strong>deufo_c</strong> -1
+					 <% @article['pop_score']['entries'].each do |entry| %>
+					 <strong><%= entry['user'] %></strong> <% entry['points'] %>
+				     <% end %>
 					 ">
-		<% if defined?@article['score_id'] %>0
-		<% else %><%= @article['score_id'] %><% end %>
+		<%= @article['pop_score']['score'] %>
 		<%= image_tag('icons/white_fire.png') %>
 	      </span>
 	    </a>
@@ -156,13 +156,14 @@
     <div id="activity" class="well social-bar">
       <h2><%= image_tag('icons/fire.png') %> Activity</h2>
       <hr>
+      <% @article['pop_score']['entries'] do |entry| %>
       <div class="activity">
-	(08:37) <b>lepage_b</b> commented on this article
-      </div>
+	<b><%= entry['user'] %></b>
+	<% if (entry['points'] < 0) %>decreased<% else %>increased<% end %>
+	   the Pop Score by <%= entry['points'].abs %>
+	   </div>
       <hr>
-      <div class="activity">
-	(08:42) <b>lepage_b</b> increased the Pop Score by 10
-      </div>
+      <% end %>
     </div>
   </div>
 

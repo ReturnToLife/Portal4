@@ -20,7 +20,10 @@
 	      </span>
 	    </a>
             <a href="#activity">
-	      <span class="badge badge-success big-badge badge-tooltip"
+	      <span class="badge
+			   <% if (@article['pop_score']['score'] > 0) %>badge-success
+			   <% elsif (@article['pop_score']['score'] < 0) %>badge-important<% end %>
+			   big-badge badge-tooltip"
 		    id="badge-pop_score"
 		    data-placement="bottom"
 		    data-toggle="tooltip"
@@ -31,6 +34,17 @@
 					 ">
 		<%= @article['pop_score']['score'] %>
 		<%= image_tag('icons/white_fire.png') %>
+	      </span>
+	    </a>
+	    <br>
+	    <a href="#"> <%# todo: js to call function %>
+	      <span class="badge badge-success">
+		<i class="icon-thumbs-up icon-white"></i>
+	      </span>
+	    </a>
+	    <a href="#"> <%# todo: js to call function %>
+	      <span class="badge badge-important">
+		<i class="icon-thumbs-down icon-white"></i>
 	      </span>
 	    </a>
 	  </div> <!-- article-badges -->

@@ -205,3 +205,98 @@ figure {
     }
 }
 
+/////////////////
+// Gossip      //
+/////////////////
+
+.gossips {
+    @fakecolor : #600;
+    @fakelight : #EA9999;
+    @truthcolor : #274E13;
+    @truthlight : #B6D7A8;
+    a {
+	color: inherit;
+	&:hover {
+	    text-decoration: none;
+	}
+    }
+    .fake {
+	background: @fakelight;
+	border-color: @fakecolor;
+	color: @fakecolor;
+	.content {
+	    text-shadow: 0 0 2px @fakecolor;
+	    -moz-text-shadow: 0 0 2px @fakecolor;
+	    -webkit-text-shadow: 0 0 2px @fakecolor;
+	}
+	.foot a {
+	    color: @fakecolor;
+	}
+    }
+    .truth {
+	background: @truthlight;
+	border-color: @truthcolor;
+	color: @truthcolor;
+	.content {
+	    text-shadow: 0 0 2px @truthcolor;
+	    -moz-text-shadow: 0 0 2px @truthcolor;
+	    -webkit-text-shadow: 0 0 2px @truthcolor;
+	}
+	.foot a {
+	    color: @truthcolor;
+	}
+    }
+    .gossip {
+	margin-top: 5%;
+	overflow: hidden;
+	text-align: center;
+	padding: 2%;
+	padding-bottom: 1%;
+	.title {
+	    font-size: 1.3em;
+	    font-weight: bold;
+	}
+	.content {
+	    color: white;
+	    font-size: 1em;
+	    font-weight: bold;
+	    padding: 4%;
+	}
+	.foot {
+	    font-size: 0.7em;
+	    a:hover {
+		text-decoration: underline;
+	    }
+	}
+	.vote {
+	    font-size: 1.4em;
+	    padding-top: 1%;
+	    padding-bottom: 4%;
+	    .button {
+		-moz-border-radius: 5px 5px 5px 5px;
+		border-radius: 5px 5px 5px 5px;
+		border: 2px solid;
+		padding: 1%;
+		padding-left: 4%;
+		padding-right: 4%;
+		margin-left: 2%;
+	    }
+	    .true {
+		background: @truthlight;
+		border-color: @truthcolor;
+		color: @truthcolor;
+		&:hover {
+		    box-shadow: 1px 1px 5px @truthcolor;
+		}
+	    }
+	    .false {
+		background: @fakelight;
+		border-color: @fakecolor;
+		color: @fakecolor;
+		&:hover {
+		    box-shadow: 1px 1px 5px @fakecolor;
+		}
+	    }
+	}
+    }
+}

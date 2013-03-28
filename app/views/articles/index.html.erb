@@ -138,7 +138,44 @@
 
   </div> <!-- page -->
 
-  <aside class="span3" id="side">
+  <aside class="span3 gossips" id="side">
+
+    <%# @gossips.each do |gossip| %>
+    <div class="gossip labo labo_miniradius truth
+		<%#= gossip['category'] %>
+		<%#= gossip['category'] %>_miniradius
+		<%# if (gossip['pop_score']['score'] > 0) truth %>
+		<%# else fake%><%# end %>">
+      <h5 class="title">
+	<a href="gossip/<%# gossip['id'] %>">
+	  Il parrait que...</a></h5>
+      <h4 class="content">
+	<a href="gossip/<%# gossip['id'] %>">
+	  <%#= gossip['sentence'] %>Placeholder is placeholded</a></h4>
+      </a>
+      <div class="vote">
+	<a href="gossip/<%# gossip['id'] %>#activity">
+	  <span class="mark badge-tooltip"
+		data-placement="left"
+		data-toggle="tooltip"
+		data-original-title="
+				     <%# gossip['pop_score']['entries'].each do |entry| %>
+				     <strong><%#= entry['user'] %></strong> <%# entry['points'] %>
+				     <%# end %>
+				     ">
+	    <%# gossip['pop_score']['score'] %>18
+	  </span>
+	</a>
+	<a href="#"><span class="button true">Vrai</span></a>
+	<a href="#"><span class="button false">Faux</span></a>
+      </div>
+      <div class="foot">
+	<a href="gossip/<%# gossip['id'] %>#comments"><%#= gossip['nb_comments'] %> comment(s)</a> |
+	<a href="gossip/new">Share a gossip</a>
+      </div>
+    </div>
+    <%# end %>
+
   </aside> <!-- side -->
   
 </div>

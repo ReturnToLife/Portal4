@@ -78,11 +78,11 @@
 			data-toggle="tooltip"
 			data-placement="bottom"
 			data-original-title="
-				     <% article['pop_score']['entries'].each do |entry| %>
-				     <strong><%= entry['user'] %></strong> <% entry['points'] %>
-				     <% end %>
+
+
+
 				     ">
-		    <% article['pop_score']['score'] %>
+		    <% #article['pop_score']['score'] %>
 		    <i class="icon-fire icon-white"></i>
 		  </span>
 		</a>
@@ -112,23 +112,23 @@
           </li>
           <li class="span3">
             <div class="thbtags">
-	      <% article['audience']['schools'].each do |school| %>
-	      <span class="badge"><%= school %></span>
-	      <% end %>
-	      <% article['audience']['promos'].each do |promo| %>
-	      <span class="badge"><%= promo %></span>
-	      <% end %>
-	      <% article['audience']['cities'].each do |city| %>
-	      <span class="badge"><%= city %></span>
-	      <% end %>
-	      <%# article['audience']['casts'].each do |cast| %>
-              <%#= image_tag('entities/icons/'+cast['name']+'.png', :class => (cast['category'] + "_icon"), :alt => cast['name']) %>
-	      <%# end %>
+
+	      <span class="badge"></span>
+
+
+	      <span class="badge"></span>
+	      
+	      
+	      <span class="badge"></span>
+	      
+	      
+              
+	      
 	      <!-- <h6>Tags</h6>
 		   <div class="tags"> -->
-		<%# article['tags'].each do |tag| %><%# todo search articles by tags %>
-                <!-- <a href="#"><span class="tag"><%= tag %></span></a> - -->
-		<%# end %>
+	
+                <!-- <a href="#"><span class="tag"></span></a> - -->
+
               <!-- </div> -->
             </div>
           </li>
@@ -142,41 +142,41 @@
 
   <aside class="span3 gossips" id="side">
 
-    <% @gossips.each do |gossip| %>
+
     <div class="gossip
-		<%= gossip['category'] %>
-		<%= gossip['category'] %>_miniradius
-		<% if (gossip['pop_score']['score'] > 0) %>truth
-		<% else %>fake<% end %>">
+
+		_miniradius
+		truth
+		fake">
       <h5 class="title">
-	<a href="gossip/<% gossip['id'] %>">
+	<a href="gossip/">
 	  Il parrait que...</a></h5>
       <h4 class="content">
-	<a href="gossip/<% gossip['id'] %>">
-	  <%= gossip['sentence'] %>Placeholder is placeholded</a></h4>
+	<a href="gossip/">
+	  Placeholder is placeholded</a></h4>
       </a>
       <div class="vote">
-	<a href="gossip/<% gossip['id'] %>#activity">
+	<a href="gossip/#activity">
 	  <span class="mark badge-tooltip"
 		data-placement="left"
 		data-toggle="tooltip"
 		data-original-title="
-				     <% gossip['pop_score']['entries'].each do |entry| %>
-				     <strong><%= entry['user'] %></strong> <% entry['points'] %>
-				     <% end %>
+				     
+				     <strong></strong> 
+				    
 				     ">
-	    <% gossip['pop_score']['score'] %>18
+	 18
 	  </span>
 	</a>
 	<a href="#"><span class="button true">Vrai</span></a>
 	<a href="#"><span class="button false">Faux</span></a>
       </div>
       <div class="foot">
-	<a href="gossip/<% gossip['id'] %>#comments"><%= gossip['nb_comments'] %> comment(s)</a> |
+	<a href="gossip#comments"> comment(s)</a> |
 	<a href="gossip/new">Share a gossip</a>
       </div>
     </div>
-    <% end %>
+
 
   </aside> <!-- side -->
   

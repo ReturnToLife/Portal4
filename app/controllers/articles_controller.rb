@@ -64,7 +64,11 @@ class ArticlesController < ApplicationController
     @login = session[:user_login]
     @author_name = hash["login"]
     @votes = hash["votes"]
-    
+    @count = 0
+    @votes.each do |vote|
+      @count = @count + 1
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: {:article => @article, :comments => @comments, :login => @login, :author_name => @author_name }}

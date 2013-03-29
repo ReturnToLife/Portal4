@@ -139,22 +139,21 @@
     </div> <!-- article_details -->
 
   </div> <!-- page -->
-<%  @gossips.each do |gossip| %>
-  <aside class="span3 gossips" id="side">
-
-
+  <%  @gossips.each do |gossip| %>
+  <aside class="span3 gossips" id="side<%= gossip['id'] %>">
+    
+    
     <div class="gossip
 		<% @scores.each do |score| %>
-	 	  <% if score[gossip['id'].to_s] %>
-		    <% if score[gossip['id'].to_s] > 0 %>
-		    truth
-		    <% else %>
-		    fake
-		    <% end %>
-		  <% end %>
+	 	<% if score[gossip['id'].to_s] %>
+		<% if score[gossip['id'].to_s] > 0 %>
+		truth
+		<% else %>
+		fake
+		<% end %>
+		<% end %>
 		<% end %>
 		_miniradius
-		
 		">
       <h5 class="title">
 	<a href="gossip/">
@@ -178,8 +177,9 @@
 	 <% end %>
 	  </span>
 	</a>
-	<a href="#"><span class="button true">True</span></a>
-	<a href="#"><span class="button false">False</span></a>
+	<%= link_to 'True', { :controller => 'votes', :action => 'voteForGossip', :idGossip => gossip['id'] }, { :method => :post, :class => "button true" } %>
+<%= link_to 'False', { :controller => 'votes', :action => 'voteAgainstGossip', :idGossip => gossip['id'] }, { :method => :post, :class => "button false" } %>
+
       </div>
       <div class="foot">
 	<a href="/gossips/<%= gossip['id'] %>"> comment(s)</a> |

@@ -7,13 +7,18 @@ class GossipsController < ApplicationController
   def index
     uri = URI.parse('http://0.0.0.0:3000/gossips.json?auth_token=' + session[:api_token])
     @response = Net::HTTP.get(uri)
+    hash = ActiveSupport::JSON.decode(@response)
 
-    @gossips = JSON.parse(@response)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @gossips }
+    i = 0
+    hash.each do |elem|
+      if i == 0
+        @gossips = elem['gossips']
+        @scores = elem['scores']
+        end
+      
+      i = 1
     end
+
   end
 
   # GET /gossips/1

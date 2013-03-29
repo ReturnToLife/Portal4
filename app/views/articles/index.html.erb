@@ -139,21 +139,29 @@
     </div> <!-- article_details -->
 
   </div> <!-- page -->
-
+<%  @gossips.each do |gossip| %>
   <aside class="span3 gossips" id="side">
 
 
     <div class="gossip
-
+		<% @scores.each do |score| %>
+	 	  <% if score[gossip['id'].to_s] %>
+		    <% if score[gossip['id'].to_s] > 0 %>
+		    truth
+		    <% else %>
+		    fake
+		    <% end %>
+		  <% end %>
+		<% end %>
 		_miniradius
-		truth
-		fake">
+		
+		">
       <h5 class="title">
 	<a href="gossip/">
-	  Il parrait que...</a></h5>
+	  I heard that...</a></h5>
       <h4 class="content">
 	<a href="gossip/">
-	  Placeholder is placeholded</a></h4>
+	  <%= gossip['text'] %></a></h4>
       </a>
       <div class="vote">
 	<a href="gossip/#activity">
@@ -165,19 +173,21 @@
 				     <strong></strong> 
 				    
 				     ">
-	 18
+	 <% @scores.each do |score| %>
+	 <%= score[gossip['id'].to_s] %>
+	 <% end %>
 	  </span>
 	</a>
-	<a href="#"><span class="button true">Vrai</span></a>
-	<a href="#"><span class="button false">Faux</span></a>
+	<a href="#"><span class="button true">True</span></a>
+	<a href="#"><span class="button false">False</span></a>
       </div>
       <div class="foot">
-	<a href="gossip#comments"> comment(s)</a> |
-	<a href="gossip/new">Share a gossip</a>
+	<a href="/gossips/<%= gossip['id'] %>"> comment(s)</a> |
+	<a href="/gossips/new">Share a gossip</a>
       </div>
     </div>
 
 
   </aside> <!-- side -->
-  
+  <% end %>
 </div>

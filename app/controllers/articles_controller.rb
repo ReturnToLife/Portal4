@@ -13,6 +13,23 @@ class ArticlesController < ApplicationController
     @response = Net::HTTP.get(uri)
     
     @articles = JSON.parse(@response)
+    # call to gossip
+    uri = URI.parse('http://0.0.0.0:3000/gossips.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash = ActiveSupport::JSON.decode(@response)
+
+    i = 0
+    hash.each do |elem|
+      if i == 0
+        @gossips = elem['gossips']
+        @scores = elem['scores']
+        end
+      
+      i = 1
+    end
+    puts @scores
+    # end call to gossip
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }

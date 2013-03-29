@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20130326002951) do
     t.string   "title"
     t.text     "description"
     t.string   "place"
-    t.datetime "start"
-    t.datetime "end"
+    t.date     "start"
+    t.date     "end"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

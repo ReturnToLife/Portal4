@@ -21,3 +21,4 @@ app/assets/javascripts/bootstrap*.js
 app/assets/javascripts/jquery*.js
 app/assets/stylesheets/bootstrap*.css
 app/assets/stylesheets/style.css
+public/img

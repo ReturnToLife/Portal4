@@ -1,24 +1,64 @@
 <h1>Listing gossips</h1>
 
-<table>
-  <tr>
-    <th>Text</th>
-    <th>Score</th>
-    <th>User</th>
-    <th>Action</th>
-  </tr>
+<%  @gossips.each do |gossip| %>
+<aside class="span3 gossips" id="side<%= gossip['id'] %>">
+  
+  
+    <div class="gossip
+		<% @scores.each do |score| %>
+	 	  <% if score[gossip['id'].to_s] %>
+		    <% if score[gossip['id'].to_s] > 0 %>
+		    truth
+		    <% else %>
+		    fake
+		    <% end %>
+		  <% end %>
+		<% end %>
+		_miniradius
+		
+		">
+      <h5 class="title">
+	<a href="gossip/">
+	  I heard that...</a></h5>
+      <h4 class="content">
+	<a href="gossip/">
+	  <%= gossip['text'] %></a></h4>
+      </a>
+      <div class="vote">
+	<a href="gossip/#activity">
+	  <span class="mark badge-tooltip"
+		data-placement="left"
+		data-toggle="tooltip"
+		data-original-title="
+				     
+				     <strong></strong> 
+				    
+				     ">
+	 <% @scores.each do |score| %>
+	 <%= score[gossip['id'].to_s] %>
+	 <% end %>
+	  </span>
+	</a>
+	<%= link_to 'True', { :controller => 'votes', :action => 'voteForGossip', :idGossip => gossip['id'] }, { :method => :post, :class => "button true" } %>
+<%= link_to 'False', { :controller => 'votes', :action => 'voteAgainstGossip', :idGossip => gossip['id'] }, { :method => :post, :class => "button false" } %>
 
-  <% @gossips.each do |gossip| %>
-  <tr>
-    <td><%= gossip['text'] %></td>
-    <td></td>
-    <td></td>
-    <td><a href="/gossips/<%= gossip['id'] %>"><button class="btn">Read more</button></a></td>
-  </tr>
+      </div>
+      <div class="foot">
+	<a href="/gossips/<%= gossip['id'] %>"> comment(s)</a> |
+	<a href="/gossips/new">Share a gossip</a>
+      </div>
+    </div>
 
-  <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Gossip', new_gossip_path %>
+  </aside> <!-- side -->
+<% end %>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<%= button_to 'New Gossip', new_gossip_path %>

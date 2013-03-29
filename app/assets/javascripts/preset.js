@@ -61,9 +61,18 @@ function        resetsizes() {
 }
 
 function        presetsizes() {
+    window.onresize = resetsizes;
     resetsizes();
     homesettings();
 }
 
+function	presetbootstrapjs() {
+    $(window).load(function() {
+	    $('.badge-tooltip').tooltip({
+		    html: true,
+			});
+	});
+}
+
 presetsizes();
-window.onresize = resetsizes;
+presetbootstrapjs();

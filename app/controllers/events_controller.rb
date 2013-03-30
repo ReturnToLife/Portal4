@@ -18,11 +18,10 @@ class EventsController < ApplicationController
     @tab.each do |a|
       @events.push(Event.new(a))
     end
-    
-    @events_by_date = @events.group_by(&:start)
+    @events_by_date = {}
+    @events.group_by(&:start).each {|k, v| @events_by_date[k.to_date] = v}
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
-    
-    respond_to do |format|
+     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
@@ -80,16 +79,18 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
+    uri = URI.parse('http://0.0.0.0:3000/events/' + params[:id] + '/update.json' )
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "event" => params[:event].to_json })
 
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+ #   redirect_to :action => "show", :id => params[:id]
+
+
+#    @event = Event.find(params[:id])
+    debugger
+    if @response.code == "204"
+      redirect_to("/events/" + params[:id])
+    else
+      redirect_to("/events/" + params[:id] + "/edit")
     end
   end
 

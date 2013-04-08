@@ -42,15 +42,15 @@ class VotesController < ApplicationController
   def voteForGossip
     uri = URI.parse('http://0.0.0.0:3000/score/voteGossip.json')
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGossip" => params[:idGossip]})
-    redirect_to :controller => "gossips", :action => 'show', :id => params[:idGossip]
+    redirect_to :controller => "articles", :action => 'index'
   end
   
   def voteAgainstGossip
     uri = URI.parse('http://0.0.0.0:3000/score/voteAgainstGossip.json')
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGossip" => params[:idGossip]})
-    redirect_to :controller => "gossips", :action => 'show', :id => params[:idGossip]
-    
+    redirect_to :controller => "articles", :action => 'index'  
   end
+
   def unvoteForGossip
     uri = URI.parse('http://0.0.0.0:3000/score/unvoteGossip.json')
     @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "idGossip" => params[:idGossip]})

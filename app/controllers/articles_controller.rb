@@ -13,6 +13,23 @@ class ArticlesController < ApplicationController
     @response = Net::HTTP.get(uri)
     
     @articles = JSON.parse(@response)
+    # call to gossip
+    uri = URI.parse('http://0.0.0.0:3000/gossips.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash = ActiveSupport::JSON.decode(@response)
+
+    i = 0
+    hash.each do |elem|
+      if i == 0
+        @gossips = elem['gossips']
+        @scores = elem['scores']
+        end
+      
+      i = 1
+    end
+    puts @scores
+    # end call to gossip
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @articles }
@@ -47,7 +64,11 @@ class ArticlesController < ApplicationController
     @login = session[:user_login]
     @author_name = hash["login"]
     @votes = hash["votes"]
-    
+    @count = 0
+    @votes.each do |vote|
+      @count = @count + 1
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: {:article => @article, :comments => @comments, :login => @login, :author_name => @author_name }}

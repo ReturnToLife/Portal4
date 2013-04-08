@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Date:</b>
-  <%= @event.date %>
+  <b>Category:</b>
+  <%= @event.category %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @event.user_id %>
+  <%= @login %>
 </p>
 
 <p>
@@ -15,6 +15,32 @@
   <%= @event.score_id %>
 </p>
 
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
 
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
+
+<p>
+  <b>Place:</b>
+  <%= @event.place %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%= @event.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%= @event.end %>
+</p>
+
+
+<p><a href="/events/<%= @event.id %>/edit">EDIT</a></p>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

@@ -1,10 +1,27 @@
+require 'json'
+require 'net/http'
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if (session[:api_token] == nil)
+      respond_to do |format|
+        format.html { redirect_to login_url, notice: 'You need to log in' }
+      end
+    end
+    uri = URI.parse('http://0.0.0.0:3000/events.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
 
-    respond_to do |format|
+    @tab = JSON.parse(@response)
+   
+    @events = Array.new
+    @tab.each do |a|
+      @events.push(Event.new(a))
+    end
+    @events_by_date = {}
+    @events.group_by(&:start).each {|k, v| @events_by_date[k.to_date] = v}
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
+     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
@@ -13,14 +30,18 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+        uri = URI.parse('http://0.0.0.0:3000/events/' + params[:id] + '.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash = ActiveSupport::JSON.decode(@response)
+    @event = Event.new(hash["event"])
+    @login = session[:user_login]
+    @author_name = hash["login"]
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @event }
+      format.json {render json: {:event => @event, :login => @login, :author_name => @author_name }}
     end
   end
-
   # GET /events/new
   # GET /events/new.json
   def new
@@ -34,38 +55,42 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
+    uri = URI.parse('http://0.0.0.0:3000/events/' + params[:id] + '.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    hash =  ActiveSupport::JSON.decode(@response)
+    @event = Event.new(hash["event"])
+    @login = session[:user_login]
+    @author_name = hash["login"]
   end
 
   # POST /events
   # POST /events.json
   def create
+    uri = URI.parse('http://0.0.0.0:3000/events.json')
     @event = Event.new(params[:event])
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "event" => @event.to_json})
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render json: @event, status: :created, location: @event }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    print @response.body
+    @event = Event.new.from_json(@response.body)
+    redirect_to("/events")
+#    redirect_to :action => "show", :id => @event.id
   end
 
   # PUT /events/1
   # PUT /events/1.json
   def update
-    @event = Event.find(params[:id])
+    uri = URI.parse('http://0.0.0.0:3000/events/' + params[:id] + '/update.json' )
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], "event" => params[:event].to_json })
 
-    respond_to do |format|
-      if @event.update_attributes(params[:event])
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+ #   redirect_to :action => "show", :id => params[:id]
+
+
+#    @event = Event.find(params[:id])
+    debugger
+    if @response.code == "204"
+      redirect_to("/events/" + params[:id])
+    else
+      redirect_to("/events/" + params[:id] + "/edit")
     end
   end
 

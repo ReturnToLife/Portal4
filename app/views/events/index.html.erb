@@ -1,27 +1,22 @@
 <h1>Listing events</h1>
 
-<table>
-  <tr>
-    <th>Date</th>
-    <th>User</th>
-    <th>Score</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.date %></td>
-    <td><%= event.user_id %></td>
-    <td><%= event.score_id %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<div id="events">
+  <h2 id="month">
+    <%= link_to "<", date: @date.prev_month %>
+    <%= @date.strftime("%B %Y") %>
+    <%= link_to ">", date: @date.next_month %>
+  </h2>
+  <%= calendar @date do |date| %>
+  <%= date.day %>
+  <% @events.each do |event| %>
+  <% if date.between?(event.start.to_date, event.end.to_date) == true %>
+  <a href="/events/<%= event.id %>"><%= event.title %></a>
+  <% end %>
+  <% end %>
+  <% end %>
+</div>
 
 <br />
 
 <%= link_to 'New Event', new_event_path %>
+	

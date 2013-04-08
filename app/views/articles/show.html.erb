@@ -57,32 +57,20 @@
 	    <ul>
 	      <li><%= @author_name %> (Writer)</li>
 
-	      <li>lepage_b (Photograph)</li>
-	      <li>munoz_v (SpellChecker)</li>
 
 	    </ul>
 	  </div> <!-- article-info -->
 	  <div class="span3" id="article-audience">
 	    <h3>Audience</h3>
 	    <ul>
-	      <li>2015<%# @articles['promo'] %></li>
-	      <li>Paris<%# @articles['city'] %></li>
-	      <li>Epitech<%# @articles['school'] %></li>
-	      <li><%= image_tag('entities/icons/lateb.png', :class => (@article['category'] + "_icon"), :alt => "Lateb") %> Lateb</li>
+
 
 	    </ul>
 	  </div> <!-- article-audience -->
 	  <div class="span5" id="article-tags">
 	    <h3>Tags</h3>
 
-	    <a href="#"><span class="tag">Party</span></a> - 
-            <a href="#"><span class="tag">Epic</span></a> - 
-            <a href="#"><span class="tag">Sausage</span></a> - 
-            <a href="#"><span class="tag">Buffet</span></a> - 
-            <a href="#"><span class="tag">Candy Canes</span></a> - 
-            <a href="#"><span class="tag">Party</span></a> - 
-            <a href="#"><span class="tag">Beer</span></a> - 
-            <a href="#"><span class="tag">Alcohol</span></a>
+
 
 	  </div>
 	</div> <!-- article-details -->
@@ -100,14 +88,14 @@
         <ul class="thumbnails hidden-phone">
           <li class="span12">
             <a href="#" class="thumbnail">
-              <%= image_tag('samples/happy.jpg') %>
+
             </a>
           </li>
 	</ul>
         <ul class="thumbnails hidden-phone">
           <li class="span12">
             <a href="#" class="thumbnail">
-              <%= image_tag('samples/oh.jpg') %>
+
             </a>
           </li>
 	</ul>
@@ -117,10 +105,6 @@
     </div> <!-- article-more-media -->
   </article>
 </div>
-
-<%= @votes %>
-<%= link_to 'Vote for', { :controller => 'votes', :action => 'voteForArticle', :idArticle => @article['id'] }, { :method => :post } %>
-<%= link_to 'Unvote for', { :controller => 'votes', :action => 'unvoteForArticle', :idArticle => @article['id'] }, { :method => :post } %>
 
 
 <div class="row-fluid" id="social">

@@ -154,7 +154,7 @@
 		<% end %>
 		<% end %>
 		_miniradius
-		">
+		" >
       <h5 class="title">
 	<a href="gossip/">
 	  I heard that...</a></h5>
@@ -168,12 +168,14 @@
 		data-placement="left"
 		data-toggle="tooltip"
 		data-original-title="
-				     
-				     <strong></strong> 
-				    
-				     ">
+<% @votestab.each do |votes| %>
+  <% votes.each do |vote| %>
+    <strong><%= vote %></strong>
+  <% end %>
+<% end %>
+                ">
 	 <% @scores.each do |score| %>
-	 <%= score[gossip['id'].to_s] %>
+	   <%= score[gossip['id'].to_s] %>
 	 <% end %>
 	  </span>
 	</a>

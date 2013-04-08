@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
       if i == 0
         @gossips = elem['gossips']
         @scores = elem['scores']
+        @votestab = elem['votes']
         end
       
       i = 1

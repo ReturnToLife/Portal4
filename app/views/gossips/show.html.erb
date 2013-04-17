@@ -1,20 +1,145 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Text:</b>
-  <%= @gossip.text %>
-</p>
+<div class="gossips">
+  <div class="large_gossip <%# depend on truth or fake %>truth <%# category %>pedago">
+    <div class="row">
+      <div class="span8">
+	<div class="text">
+	  <h2>Il parrait que...</h2>
+	  <h1><%= @gossip.text %></h1>
+	</div> <!-- text -->
+      </div> <!-- .span -->
+      <div class="span4">
+	<div class="badge badge-success big-badge badge-tooltip">
+	  <div class="row-fluid">
+	    <div class="span6">
+	      <% if defined?@gossip.score_id %>0
+	      <% else %><%= @gossip.score_id %><% end %>
+	    </div>
+	    <div class="span6">
+	      <%= image_tag('fire.png') %>
+	    </div>
+	  </div>
+	</div> <!-- badge -->
+	<div class="row-fluid">
+	  <div class="span6">
+	    <a href="#"> 
+	      <div class="medium-badge badge badge-success">
+		<%= image_tag('icons/white_thumbs_up.png') %>
+	      </div>
+	    </a>
+	  </div>
+	  <div class="span6">
+	    <a href="#"> 
+	      <div class="medium-badge badge badge-important">
+		<%= image_tag('icons/white_thumbs_down.png') %>
+	      </div>
+	    </a>
+	  </div> <!-- .span -->
+	</div> <!-- .row -->
+      </div> <!-- .span -->
+    </div> <!-- .row -->
+  </div> <!-- large_gossip -->
 
-<p>
-  <b>Score:</b>
-  <%= @gossip.score_id %>
-</p>
+<div class="row-fluid" id="social">
+  <div class="span6">
+    <div id="comments" class="well social-bar">
+      <h2><%= image_tag('icons/conversation.png') %> Comments</h2>
+      <hr>
+      <%# @comments.each do |comment| %>
+      <div class="comment">
+	<div class="row-fluid">
+	  <div class="span2">
+	    <a href="#">
+	      <img class="avatar" src="http://cdn.local.epitech.net/userprofil/profilview/carade_g.jpg" alt="carade_g">
+	    </a>
+	  </div> <!-- .span -->
+	  <div class="span10">
+	    <div class="pull-right">
+	      <small>
+		<%= image_tag('icons/bin.png', :style => 'height: 10px;') %>
+		<a href="/articles/<%#= @article.id %>/acomments/<%#= comment['id'] %>"
+		   data-method="delete" data-confirm="Are you sure?">
+		  Delete Comment</a>
+	      </small>
+	    </div> <!-- .pull-right -->
+	    <h5><a href=""><%#= comment['user_login'] %></a> said:</h5>
+	    <p><%#= comment['body'] %></p>
+	  </div> <!-- .span -->
+	</div> <!-- .row -->
+      </div> <!-- .comment -->
+      <hr>
+      <%# end %>
+      <h3>Add a comment</h3>
+      <%#= form_for([@article, @article.acomments.build], :class => 'form-horizontal') do |f| %>
+      <div class="control-group">
+	<%#= f.label(:body, "Content", :class => 'control-label') %>
+	<div class="controls">
+	    <%#= f.text_area(:body, :rows => 4, :cols => 4) %>
+	</div>
+      </div>
+      <div class="control-group">
+	<div class="controls">
+	  <%#= f.submit("Add a comment", :class => 'btn btn-success') %>
+	</div>
+      </div>
+      <%# end %>
+    </div>
+  </div>
+  <div class="span6">
+    <div id="activity" class="well social-bar">
+      <h2><%= image_tag('icons/fire.png') %> Activity</h2>
+      <hr>
+      <div class="activity">
+	(08:37) <b>lepage_b</b> commented on this article
+      </div>
+      <hr>
+      <div class="activity">
+	(08:42) <b>lepage_b</b> increased the Pop Score by 10
+      </div>
+    </div>
+  </div>
+</div> <!-- social -->
 
-<p>
-  <b>User:</b>
-  <%= @gossip.user_id %>
-</p>
+<h1 class="separator-title">In the same category</h1>
+<div class="suggestions row-fluid">
 
-
-<%= link_to 'Edit', edit_gossip_path(@gossip) %> |
-<%= link_to 'Back', gossips_path %>
+  <% array = ["general", "pedago", "labo", "asso"] %>
+  <% array.each do |category| %>
+  <%# foreach suggestion gossip |gossip| %>
+  <div class="span3">
+    <div class="gossip labo labo_miniradius truth
+		<%= category %>
+		<%= category %>_miniradius
+		<%# if (gossip['pop_score']['score'] > 0) truth %>
+		<%# else fake%><%# end %>">
+      <h5 class="title">
+	<a href="gossip/<%# gossip['id'] %>">
+	  Il parrait que...</a></h5>
+      <h4 class="content">
+	<a href="gossip/<%# gossip['id'] %>">
+	  <%#= gossip['sentence'] %>Placeholder is placeholded</a></h4>
+      <div class="vote">
+	<a href="gossip/<%# gossip['id'] %>#activity">
+	  <span class="mark badge-tooltip"
+		data-placement="left"
+		data-toggle="tooltip"
+		data-original-title="
+				     <%# gossip['pop_score']['entries'].each do |entry| %>
+				     <strong><%#= entry['user'] %></strong> <%# entry['points'] %>
+				     <%# end %>
+				     ">
+	    <%# gossip['pop_score']['score'] %>18
+	  </span>
+	</a>
+	<a href="#"><span class="button true">Vrai</span></a>
+	<a href="#"><span class="button false">Faux</span></a>
+      </div> <!-- vote -->
+      <div class="foot">
+	<a href="gossip/<%# gossip['id'] %>#comments"><%#= gossip['nb_comments'] %> comment(s)</a> |
+	<a href="gossip/new">Share a gossip</a>
+      </div> <!-- foot -->
+    </div> <!-- gossip -->
+  </div> <!-- span -->
+  <% end %>
+  
+</div> <!-- gossips -->

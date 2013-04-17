@@ -4,7 +4,7 @@
   <article id="<%= @article['id'] %>">
     <div class="row-fluid" id="article-top">
       <div class="span3" id="article-thumbnail">
-	<%= image_tag('samples/pizza.jpg') %>
+	<%= image_tag('samples/pizza.jpg', :class => (@article['category'] + "_miniradius " + @article['category'])) %>
       </div> <!-- article-thumbnail -->
       <div class="span9" id="article-info">
 	<div class="row-fluid">
@@ -12,18 +12,10 @@
 	    <h1><%= @article.title %></h1>
 	  </div> <!-- article-title -->
 	  <div class="span3" id="article-badges">
-            <a href="#comments">
-	      <span class="badge badge-info big-badge"
-		    id="badge-comments">
-		<% if defined?@article['nb_comments'] %>0
-		<% else %><%= @article['nb_comments'] %><% end %>
-		<%= image_tag('icons/white_conversation.png') %>
-	      </span>
-	    </a>
             <a href="#activity">
 	      <span class="badge badge-success big-badge badge-tooltip"
 		    id="badge-pop_score"
-		    data-placement="bottom"
+		    data-placement="left"
 		    data-toggle="tooltip"
 		    data-original-title="
 					   <strong>munoz_v</strong> +10<br>
@@ -32,6 +24,25 @@
 		<% if defined?@article['score_id'] %>0
 		<% else %><%= @article['score_id'] %><% end %>
 		<%= image_tag('icons/white_fire.png') %>
+	      </span>
+	    </a>
+            <a href="#comments">
+	      <span class="badge badge-info big-badge"
+		    id="badge-comments">
+		<% if defined?@article['nb_comments'] %>0
+		<% else %><%= @article['nb_comments'] %><% end %>
+		<%= image_tag('icons/white_conversation.png') %>
+	      </span>
+	    </a>
+	    <br>
+	    <a href="#"> 
+	      <span class="badge badge-success">
+		<i class="icon-thumbs-up icon-white"></i>
+	      </span>
+	    </a>
+	    <a href="#"> 
+	      <span class="badge badge-important">
+		<i class="icon-thumbs-down icon-white"></i>
 	      </span>
 	    </a>
 	  </div> <!-- article-badges -->
@@ -105,17 +116,26 @@
       <hr>
       <% @comments.each do |comment| %>
       <div class="comment">
-	<div class="pull-right">
-	  <small>
-	    <%= image_tag('icons/bin.png', :style => 'height: 10px;') %>
-	    <a href="/articles/<%= @article.id %>/acomments/<%= comment['id'] %>"
-	       data-method="delete" data-confirm="Are you sure?">
-	      Delete Comment</a>
-	  </small>
-	</div>
-	<h5><%= comment['user_login'] %> said:</h5>
-	<p><%= comment['body'] %></p>
-      </div>
+	<div class="row-fluid">
+	  <div class="span2">
+	    <a href="#">
+	      <img class="avatar" src="http://cdn.local.epitech.net/userprofil/profilview/carade_g.jpg" alt="carade_g">
+	    </a>
+	  </div> <!-- .span -->
+	  <div class="span10">
+	    <div class="pull-right">
+	      <small>
+		<%= image_tag('icons/bin.png', :style => 'height: 10px;') %>
+		<a href="/articles/<%= @article.id %>/acomments/<%= comment['id'] %>"
+		   data-method="delete" data-confirm="Are you sure?">
+		  Delete Comment</a>
+	      </small>
+	    </div> <!-- .pull-right -->
+	    <h5><a href=""><%= comment['user_login'] %></a> said:</h5>
+	    <p><%= comment['body'] %></p>
+	  </div> <!-- .span -->
+	</div> <!-- .row -->
+      </div> <!-- .comment -->
       <hr>
       <% end %>
       <h3>Add a comment</h3>

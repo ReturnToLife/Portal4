@@ -14,8 +14,7 @@
             <a href="#comments">
 	      <span class="badge badge-info big-badge"
 		    id="badge-comments">
-		<% if defined?@article['nb_comments'] %>0
-		<% else %><%= @article['nb_comments'] %><% end %>
+		<%= @article['nb_comments'] %>
 		<%= image_tag('icons/white_conversation.png') %>
 	      </span>
 	    </a>
@@ -29,7 +28,11 @@
 		    data-toggle="tooltip"
 		    data-original-title="
 					 
-					 <strong>test</strong> 
+					 <strong>
+					 <% @votes.each do |vote| %>
+					 <%= vote.first.first  %><br/>
+					 <% end %>
+					 </strong> 
 				  
 					 ">
 <%= @count %>

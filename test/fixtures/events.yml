@@ -9,8 +9,8 @@
 #  title       :string(255)
 #  description :text
 #  place       :string(255)
-#  start       :datetime
-#  end         :datetime
+#  start       :date
+#  end         :date
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

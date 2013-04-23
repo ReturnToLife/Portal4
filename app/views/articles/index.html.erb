@@ -22,8 +22,8 @@
               <div class="span3 badges">
                 <a href="/articles/<%= article['id'] %>#comments">
 		  <span class="badge badge-info">
-		    <% if defined?article['nb_comments'] %>0
-		    <% else %><%= article['nb_comments'] %><% end %>
+
+		    <%= article['nb_comments'] %>
 		    <i class="icon-comment icon-white"></i>
 		  </span>
 		</a>
@@ -93,6 +93,7 @@
     </div> <!-- article_details -->
 
   </div> <!-- page -->
+<% i = 0 %>
   <%  @gossips.each do |gossip| %>
   <aside class="span3 gossips" id="side<%= gossip['id'] %>">
     
@@ -122,11 +123,14 @@
 		data-placement="left"
 		data-toggle="tooltip"
 		data-original-title="
-<% @votestab.each do |votes| %>
-  <% votes.each do |vote| %>
-    <strong><%= vote %></strong>
+
+  <% @votestab[i].each do |data| %>
+    <% data.second.each do |vote| %>
+      <% realvote = Vote.new.from_json(vote.to_json)%>
+      <strong><%= realvote.value %> <%= realvote.login %></strong><br/>
+    <% end %>
   <% end %>
-<% end %>
+
                 ">
 	 <% @scores.each do |score| %>
 	   <%= score[gossip['id'].to_s] %>
@@ -145,5 +149,6 @@
 
 
   </aside> <!-- side -->
+<% i = i + 1%>
   <% end %>
 </div>

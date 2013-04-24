@@ -1,15 +1,171 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @group.title %>
-</p>
+<div class="entity">
+  <header id="<%= @group.title %>" class="header">
+    <div class="row-fluid">
+      <div class="span5">
+	<%= image_tag('entities/logo/'+@group.title.downcase+'.png', :alt => @group.title) %>
+      </div>
+      <div class="span7">
+	<h1><%= @group.title.capitalize %></h1>
+	<h2><%#= @group.description %>This group is so cool.</h2>
+      </div>
+    </div>
+  </header>
 
-<p>
-  <b>Parent:</b>
-  <%= @group.parent_id %>
-</p>
+<!--  <ul class="nav nav-tabs">
+    <li class="active"><a href="#home">Home</a></li>
+    <li><a href="#articles">Articles</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#gossips">Gossips</a></li>
+    <li><a href="#members">Members</a></li>
+    <li><a href="#enroll">Enroll</a></li>
+    <li><a href="#store">Store</a></li>
+    <li><a href="#local">Local</a></li>
+    <li><a href="#treasury">Treasury</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul> -->
 
+  <div class="content">
+    
+    <div class="row-fluid">
+      <div class="span9">
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+	<div class="articles_details">
+	<h1 class="separator-title">Articles</h1>
+	
+	<%# @articles.each do |article| %>
+	<article class="article_details categ asso<%#= article['category'] %>" id="<%#= article['id'] %>">
+          <div class="row-fluid">
+            <figure class="span5">
+              <%= image_tag('samples/pizza.jpg') %>
+            </figure>
+            <div class="span7">
+              <div class="row-fluid">
+		<h3 class="span9"><%#= article['title'] %></h3>
+		<div class="span3 badges">
+                  <a href="/articles/<%#= article['id'] %>#comments">
+		    <span class="badge badge-info">
+		      <%# if defined?article['nb_comments'] %>0
+		      <%# else %><%#= article['nb_comments'] %><%# end %>
+		      <i class="icon-comment icon-white"></i>
+		    </span>
+		  </a>
+                  <a href="/articles/<%#= article['id'] %>#activity">
+		    <span class="badge badge-success badge-tooltip"
+			  data-toggle="tooltip"
+			  data-placement="bottom"
+			  data-original-title="
+					       <strong>munoz_v</strong> +10<br>
+					       <strong>deufo_c</strong> -1
+					       ">
+		      
+		      <%# #article['pop_score']['score'] %>
+		      <i class="icon-fire icon-white"></i>
+		    </span>
+		  </a>
+		</div>
+              </div>
+              <div class="content">
+		<%#= article['content'] %>
+		<a href="/articles/<%#= article['id'] %>"><button class="btn">Read more</button></a>
+              </div> <!-- content -->
+            </div>
+          </div>
+          <ul class="thumbnails hidden-phone">
+            <li class="span3">
+              <a href="#" class="thumbnail">
+		<%= image_tag('samples/happy.jpg') %>
+              </a>
+            </li>
+            <li class="span3">
+              <a href="#" class="thumbnail">
+		<%= image_tag('samples/oh.jpg') %>
+              </a>
+            </li>
+            <li class="span3">
+              <a href="#" class="thumbnail">
+		<%= image_tag('samples/game.jpg') %>
+              </a>
+            </li>
+            <li class="span3">
+              <div class="thbtags">
+		<span class="badge">2014</span>
+		<span class="badge">2015</span>
+		<span class="badge">Paris</span>
+		<span class="badge">Nantes</span>
+		<span class="badge">Lilles</span>
+		<%#= image_tag('entities/icons/lateb.png', :class => (article['category'] + "_icon"), :alt => "Lateb") %>
+		<h6>Tags</h6>
+		<div class="tags">
+                  <a href="#"><span class="tag">Party</span></a> - 
+                  <a href="#"><span class="tag">Epic</span></a> - 
+                  <a href="#"><span class="tag">Sausage</span></a> - 
+                  <a href="#"><span class="tag">Buffet</span></a> - 
+                  <a href="#"><span class="tag">Candy Canes</span></a> - 
+                  <a href="#"><span class="tag">Party</span></a> - 
+                  <a href="#"><span class="tag">Beer</span></a> - 
+                  <a href="#"><span class="tag">Alcohol</span></a>
+		</div>
+              </div>
+            </li>
+          </ul>
+	</article> <!-- article_details -->
+	<%# end %>
+	</div> <!-- article_details -->
+      </div> <!-- span -->
+      <div class="span3">
+	
+	<aside class="gossips" id="side">
+	  <h1 class="separator-title">Gossips</h1>
+	  
+	  <%# @gossips.each do |gossip| %>
+	  <div class="gossip labo labo_miniradius truth
+		      <%#= gossip['category'] %>
+		      <%#= gossip['category'] %>_miniradius
+		      <%# if (gossip['pop_score']['score'] > 0) truth %>
+		      <%# else fake%><%# end %>">
+	    <h5 class="title">
+	      <a href="gossip/<%# gossip['id'] %>">
+		Il parrait que...</a></h5>
+	    <h4 class="content">
+	      <a href="gossip/<%# gossip['id'] %>">
+		<%#= gossip['sentence'] %>Placeholder is placeholded</a>
+	    </h4>
+	    <div class="vote">
+	      <a href="gossip/<%# gossip['id'] %>#activity">
+		<span class="mark badge-tooltip"
+		      data-placement="left"
+		      data-toggle="tooltip"
+		      data-original-title="
+					   <%# gossip['pop_score']['entries'].each do |entry| %>
+					   <strong><%#= entry['user'] %></strong> <%# entry['points'] %>
+					   <%# end %>
+					   ">
+		  <%# gossip['pop_score']['score'] %>18
+		</span>
+	      </a>
+	      <a href="#"><span class="button true">Vrai</span></a>
+	      <a href="#"><span class="button false">Faux</span></a>
+	    </div>
+	    <div class="foot">
+	      <a href="gossip/<%# gossip['id'] %>#comments"><%#= gossip['nb_comments'] %> comment(s)</a> |
+	      <a href="gossip/new">Share a gossip</a>
+	    </div>
+	  </div>
+	  <%# end %>
+	<h1 class="separator-title">Events</h1>
+	  <p>pretty calendar module here</p>
+	</aside> <!-- side -->
+      </div>
+      
+    </div> <!-- row -->
+    
+  </div> <!-- content -->
+  
+  <footer>
+    <%= link_to 'Edit', edit_group_path(@group) %> |
+    <%= link_to 'Back', groups_path %>
+  </footer>
+    
+</div>
+  

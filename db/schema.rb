@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408173303) do
+ActiveRecord::Schema.define(:version => 20130426223507) do
 
   create_table "acomments", :force => true do |t|
     t.integer  "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130408173303) do
     t.integer  "article_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "score_id"
   end
 
   add_index "acomments", ["article_id"], :name => "index_acomments_on_article_id"
@@ -129,8 +130,11 @@ ActiveRecord::Schema.define(:version => 20130408173303) do
     t.integer  "uid"
     t.string   "report_url"
     t.string   "email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   create_table "votes", :force => true do |t|

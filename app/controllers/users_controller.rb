@@ -1,3 +1,5 @@
+require 'json'
+require 'net/http'
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
@@ -13,8 +15,15 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-
+    uri = URI.parse('http://0.0.0.0:3000/users/' + params[:id] + '.json?auth_token=' + session[:api_token])
+#    @user = User.find(params[:id])
+    @response = Net::HTTP.get(uri)
+    hash = ActiveSupport::JSON.decode(@response)
+    @user = User.new(hash["user"])
+    @arrayArticles = []
+    @arrayAcomments = []
+    hash["articles"].each {|article| @arrayArticles.append(Article.new(article))}
+    hash["acomments"].each {|comment| @arrayAcomments.append(Acomment.new(comment))}
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }

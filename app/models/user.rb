@@ -19,5 +19,14 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :avatar_url, :city, :email, :firstname, :lastname, :login, :photo_url, :promo_id, :report_url, :school_id, :uid
+
+# Paperclip
+has_attached_file :photo,
+  :styles => {
+    :thumb=> "100x100#",
+    :small  => "150x150>",
+    :medium => "300x300>",
+    :large =>   "400x400>" }
+
+  attr_accessible :avatar_url, :city, :email, :firstname, :lastname, :login, :photo_url, :promo_id, :report_url, :school_id, :uid, :photo, :created_at, :id, :photo_content_type, :photo_file_name, :photo_file_size, :updated_at
 end

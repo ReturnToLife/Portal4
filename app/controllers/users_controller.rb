@@ -4,7 +4,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    uri = URI.parse('http://0.0.0.0:3000/users.json?auth_token=' + session[:api_token])
+    @response = Net::HTTP.get(uri)
+    @tab = JSON.parse(@response)
+    @users = Array.new
+    @tab.each do |a|
+      @users.push(User.new(a))
+    end
 
     respond_to do |format|
       format.html # index.html.erb

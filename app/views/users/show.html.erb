@@ -17,10 +17,11 @@
 <table class="article" border="1" style="float:left;margin-right: 40px">
     <tr>
       <th>Wrote <%= @arrayArticles.length %> articles </th>
+
     </tr>
     <% @arrayArticles.each do |article| %>
     <tr>
-      <td><%= article.title %> </td>
+      <td> <a href="/articles/<%= article.id%>" ><%= article.title %></a> </td>
     </tr>
     <% end %>
 </table>

@@ -7,7 +7,7 @@
       </div>
       <div class="span7">
 	<h1><%= @group.title.capitalize %></h1>
-	<h2><%#= @group.description %>This group is so cool.</h2>
+	<h2><%= @group.commentary %></h2>
       </div>
     </div>
   </header>
@@ -114,7 +114,9 @@
 	</div> <!-- article_details -->
       </div> <!-- span -->
       <div class="span3">
-	
+	<h1 class="separator-title">Contact</h1>
+<p><%= @group.contact %>	</p>
+
 	<aside class="gossips" id="side">
 	  <h1 class="separator-title">Gossips</h1>
 	  <% i = 0 %>

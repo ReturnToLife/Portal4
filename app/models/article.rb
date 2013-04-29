@@ -15,10 +15,11 @@
 #  event_id         :integer
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  group_id         :integer
 #
 
 class Article < ActiveRecord::Base
-  attr_accessible :category, :content, :event_id, :nb_comments, :publication_date, :score_id, :status, :thumbnail, :title, :user_id, :created_at, :id, :updated_at
+  attr_accessible :category, :content, :event_id, :nb_comments, :publication_date, :score_id, :status, :thumbnail, :title, :user_id, :created_at, :id, :updated_at, :group_id
 
   has_many :acomments
 end

@@ -7,10 +7,12 @@
 #  parent_id  :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  commentary :text
+#  contact    :text
 #
 
 class Group < ActiveRecord::Base
-  attr_accessible :parent_id, :title, :id, :created_at, :updated_at
+  attr_accessible :parent_id, :title, :id, :created_at, :updated_at, :commentary, :contact
 
 
 end

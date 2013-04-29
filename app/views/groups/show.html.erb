@@ -7,7 +7,7 @@
       </div>
       <div class="span7">
 	<h1><%= @group.title.capitalize %></h1>
-	<h2><%#= @group.description %>This group is so cool.</h2>
+	<h2><%= @group.commentary %></h2>
       </div>
     </div>
   </header>
@@ -19,9 +19,7 @@
     <li><a href="#gossips">Gossips</a></li>
     <li><a href="#members">Members</a></li>
     <li><a href="#enroll">Enroll</a></li>
-    <li><a href="#store">Store</a></li>
-    <li><a href="#local">Local</a></li>
-    <li><a href="#treasury">Treasury</a></li>
+    <li><a href="/ressources?group_id=<%= @group.id %>">Ressource</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul> 
 
@@ -116,7 +114,9 @@
 	</div> <!-- article_details -->
       </div> <!-- span -->
       <div class="span3">
-	
+	<h1 class="separator-title">Contact</h1>
+<p><%= @group.contact %>	</p>
+
 	<aside class="gossips" id="side">
 	  <h1 class="separator-title">Gossips</h1>
 	  <% i = 0 %>
@@ -181,8 +181,9 @@
 	    <%= info %></br>
 	    <% end %>
 </p>
+<%if @is_admin == true %>
 	  <%= button_to("Add member", :action => "addmember", :id => @group.id) %>
-
+<%end%>
 	</aside> <!-- side -->
       </div>
       

@@ -1,0 +1,7 @@
+<h1>Editing ressource</h1>
+
+<%= render 'form' %>
+
+<a href="/ressources/<%= @ressource.id %>?group_id=<%= @group_id %>">Cancel</a><br>
+<a href="/groups/<%= @group_id %>">Back to Group page</a> | 
+<a href="/ressources?group_id=<%= @group_id %>">Back to Ressource Page</a>

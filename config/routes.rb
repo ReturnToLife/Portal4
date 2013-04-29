@@ -46,6 +46,9 @@ Client::Application.routes.draw do
   
   resources :jobs
 
+  match "groups/:id/savemember" => "groups#savemember"
+
+  match "groups/:id/addmember" => "groups#addmember"
 
   resources :groups
 

@@ -10,5 +10,7 @@
 #
 
 class Group < ActiveRecord::Base
-  attr_accessible :parent_id, :title
+  attr_accessible :parent_id, :title, :id, :created_at, :updated_at
+
+
 end

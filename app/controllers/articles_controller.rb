@@ -27,7 +27,6 @@ class ArticlesController < ApplicationController
         end
       i = 1
     end
-    puts @scores
     # end call to gossip
 
     respond_to do |format|

@@ -3,7 +3,6 @@
 <div style="height: 100%;float:left;margin-left:10px">
 <h4> <%= @user.firstname %> <%= @user.lastname %> |  <%= @user.login %></h4>
 <p>City:  <%= @user.city %> </p>
-<p>uid:  <%= @user.uid %> </p>
 <p>email:  <%= @user.email %> </p>
 </div>
 </div>
@@ -13,33 +12,33 @@
 <br />
 <br />
 
-<% if @arrayArticles.any? %>
-<table class="article" border="1" style="float:left;margin-right: 40px">
-    <tr>
-      <th>Wrote <%= @arrayArticles.length %> articles </th>
-
-    </tr>
+<div id="social" class="row-fluid">
+<div class="span6">
+  <% if @arrayArticles.any? %>
+  <div id="comments" class="well social-bar">
+    <h2>Wrote <%= @arrayArticles.length %> articles</h2>
+    <hr>
     <% @arrayArticles.each do |article| %>
-    <tr>
-      <td> <a href="/articles/<%= article.id%>" ><%= article.title %></a> </td>
-    </tr>
+    
+    <a href="/articles/<%= article.id%>" ><%= article.title %></a>
+    <hr>
     <% end %>
-</table>
-<% end %>
-
-<% if @arrayAcomments.any? %>
-<table class="article" border="1" style="float:left">
-    <tr>
-      <th>Wrote <%= @arrayAcomments.length %> comments </th>
-    </tr>
+    <% end %>
+    
+    <% if @arrayAcomments.any? %>
+    
+    <h2>Wrote <%= @arrayAcomments.length %> comments </h2>
+    <hr>
     <% @arrayAcomments.each do |comment| %>
-    <tr>
-      <td><%= comment.body %> </td>
-    </tr>
+    
+    <td><%= comment.body %> </td>
+    
     <% end %>
-</table>
-<% end %>
-
+    
+    <% end %>
+  </div>
+</div>
+</div>
 
 <div id="dialog" style="show:hidden">
   <%= form_for(@user, :url => user_path(@user), :method => "put", :html => { :multipart => true }) do |f| %>

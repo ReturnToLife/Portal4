@@ -1,5 +1,16 @@
 <h1>Listing users</h1>
 
+<style>
+table, td, th
+{
+border:1px solid blue;
+}
+th
+{
+background-color:blue;
+color:white;
+}
+</style>
 <table>
   <tr>
     <th>Login</th>
@@ -8,7 +19,6 @@
     <th>City</th>
     <th>Photo url</th>
     <th>Avatar url</th>
-    <th>Uid</th>
     <th>Email</th>
     <th></th>
   </tr>
@@ -21,7 +31,6 @@
     <td><%= user.city %></td>
     <td><%= user.photo_url %></td>
     <td><%= user.avatar_url %></td>
-    <td><%= user.uid %></td>
     <td><%= user.email %></td>
     <td><a href="/users/<%= user.id %>" >Show</a></td>
   </tr>

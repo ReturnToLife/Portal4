@@ -12,7 +12,7 @@
     </div>
   </header>
 
-<!--  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs">
     <li class="active"><a href="#home">Home</a></li>
     <li><a href="#articles">Articles</a></li>
     <li><a href="#events">Events</a></li>
@@ -23,7 +23,7 @@
     <li><a href="#local">Local</a></li>
     <li><a href="#treasury">Treasury</a></li>
     <li><a href="#contact">Contact</a></li>
-  </ul> -->
+  </ul> 
 
   <div class="content">
     
@@ -32,129 +32,157 @@
 
 	<div class="articles_details">
 	<h1 class="separator-title">Articles</h1>
-	
-	<%# @articles.each do |article| %>
-	<article class="article_details categ asso<%#= article['category'] %>" id="<%#= article['id'] %>">
-          <div class="row-fluid">
-            <figure class="span5">
-              <%= image_tag('samples/pizza.jpg') %>
-            </figure>
-            <div class="span7">
-              <div class="row-fluid">
-		<h3 class="span9"><%#= article['title'] %></h3>
-		<div class="span3 badges">
-                  <a href="/articles/<%#= article['id'] %>#comments">
-		    <span class="badge badge-info">
-		      <%# if defined?article['nb_comments'] %>0
-		      <%# else %><%#= article['nb_comments'] %><%# end %>
-		      <i class="icon-comment icon-white"></i>
-		    </span>
-		  </a>
-                  <a href="/articles/<%#= article['id'] %>#activity">
-		    <span class="badge badge-success badge-tooltip"
-			  data-toggle="tooltip"
-			  data-placement="bottom"
-			  data-original-title="
-					       <strong>munoz_v</strong> +10<br>
-					       <strong>deufo_c</strong> -1
-					       ">
-		      
-		      <%# #article['pop_score']['score'] %>
-		      <i class="icon-fire icon-white"></i>
-		    </span>
-		  </a>
-		</div>
+      <% @articles.each do |article| %>
+      <article class="article_details categ <%= article['category'] %>" id="<%= article['id'] %>">
+        <div class="row-fluid">
+          <figure class="span5">
+
+
+          </figure>
+          <div class="span7">
+            <div class="row-fluid">
+              <h3 class="span9"><%= article['title'] %></h3>
+              <div class="span3 badges">
+                <a href="/articles/<%= article['id'] %>#comments">
+		  <span class="badge badge-info">
+
+		    <%= article['nb_comments'] %>
+		    <i class="icon-comment icon-white"></i>
+		  </span>
+		</a>
+                <a href="/articles/<%= article['id'] %>#activity">
+		  <span class="badge badge-success badge-tooltip"
+			data-toggle="tooltip"
+			data-placement="bottom"
+			data-original-title="
+
+
+
+				     ">
+		    <% #article['pop_score']['score'] %>
+		    <i class="icon-fire icon-white"></i>
+		  </span>
+		</a>
               </div>
-              <div class="content">
-		<%#= article['content'] %>
-		<a href="/articles/<%#= article['id'] %>"><button class="btn">Read more</button></a>
-              </div> <!-- content -->
             </div>
+            <div class="content">
+	      <%= article['content'] %>
+              <a href="/articles/<%= article['id'] %>"><button class="btn">Read more</button></a>
+            </div> <!-- content -->
           </div>
-          <ul class="thumbnails hidden-phone">
-            <li class="span3">
-              <a href="#" class="thumbnail">
-		<%= image_tag('samples/happy.jpg') %>
-              </a>
-            </li>
-            <li class="span3">
-              <a href="#" class="thumbnail">
-		<%= image_tag('samples/oh.jpg') %>
-              </a>
-            </li>
-            <li class="span3">
-              <a href="#" class="thumbnail">
-		<%= image_tag('samples/game.jpg') %>
-              </a>
-            </li>
-            <li class="span3">
-              <div class="thbtags">
-		<span class="badge">2014</span>
-		<span class="badge">2015</span>
-		<span class="badge">Paris</span>
-		<span class="badge">Nantes</span>
-		<span class="badge">Lilles</span>
-		<%#= image_tag('entities/icons/lateb.png', :class => (article['category'] + "_icon"), :alt => "Lateb") %>
-		<h6>Tags</h6>
-		<div class="tags">
-                  <a href="#"><span class="tag">Party</span></a> - 
-                  <a href="#"><span class="tag">Epic</span></a> - 
-                  <a href="#"><span class="tag">Sausage</span></a> - 
-                  <a href="#"><span class="tag">Buffet</span></a> - 
-                  <a href="#"><span class="tag">Candy Canes</span></a> - 
-                  <a href="#"><span class="tag">Party</span></a> - 
-                  <a href="#"><span class="tag">Beer</span></a> - 
-                  <a href="#"><span class="tag">Alcohol</span></a>
-		</div>
-              </div>
-            </li>
-          </ul>
-	</article> <!-- article_details -->
-	<%# end %>
+        </div>
+        <ul class="thumbnails hidden-phone">
+          <li class="span3">
+            <a href="#" class="thumbnail">
+
+            </a>
+          </li>
+          <li class="span3">
+            <a href="#" class="thumbnail">
+
+            </a>
+          </li>
+          <li class="span3">
+            <a href="#" class="thumbnail">
+  
+            </a>
+          </li>
+          <li class="span3">
+            <div class="thbtags">
+
+	      <span class="badge"></span>
+
+
+	      <span class="badge"></span>
+	      
+	      
+	      <span class="badge"></span>
+	      
+	      
+              
+	      
+	      <!-- <h6>Tags</h6>
+		   <div class="tags"> -->
+	
+                <!-- <a href="#"><span class="tag"></span></a> - -->
+
+              <!-- </div> -->
+            </div>
+          </li>
+        </ul>
+      </article> <!-- article_details -->
+      <% end %>	
+
 	</div> <!-- article_details -->
       </div> <!-- span -->
       <div class="span3">
 	
 	<aside class="gossips" id="side">
 	  <h1 class="separator-title">Gossips</h1>
-	  
-	  <%# @gossips.each do |gossip| %>
-	  <div class="gossip labo labo_miniradius truth
-		      <%#= gossip['category'] %>
-		      <%#= gossip['category'] %>_miniradius
-		      <%# if (gossip['pop_score']['score'] > 0) truth %>
-		      <%# else fake%><%# end %>">
-	    <h5 class="title">
-	      <a href="gossip/<%# gossip['id'] %>">
-		Il parrait que...</a></h5>
-	    <h4 class="content">
-	      <a href="gossip/<%# gossip['id'] %>">
-		<%#= gossip['sentence'] %>Placeholder is placeholded</a>
-	    </h4>
-	    <div class="vote">
-	      <a href="gossip/<%# gossip['id'] %>#activity">
-		<span class="mark badge-tooltip"
-		      data-placement="left"
-		      data-toggle="tooltip"
-		      data-original-title="
-					   <%# gossip['pop_score']['entries'].each do |entry| %>
-					   <strong><%#= entry['user'] %></strong> <%# entry['points'] %>
-					   <%# end %>
-					   ">
-		  <%# gossip['pop_score']['score'] %>18
-		</span>
-	      </a>
-	      <a href="#"><span class="button true">Vrai</span></a>
-	      <a href="#"><span class="button false">Faux</span></a>
-	    </div>
-	    <div class="foot">
-	      <a href="gossip/<%# gossip['id'] %>#comments"><%#= gossip['nb_comments'] %> comment(s)</a> |
-	      <a href="gossip/new">Share a gossip</a>
-	    </div>
-	  </div>
-	  <%# end %>
-	<h1 class="separator-title">Events</h1>
-	  <p>pretty calendar module here</p>
+	  <% i = 0 %>
+	  <%  @gossips.each do |gossip| %>
+	  <aside class="gossips" id="side<%= gossip['id'] %>">    
+	    <div class="gossip labo labo_miniradius
+			<% @scores.each do |score| %>
+	 		<% if score[gossip['id'].to_s] %>
+			<% if score[gossip['id'].to_s] > 0 %>
+			truth
+			<% else %>
+			fake
+			<% end %>
+			<% end %>
+			<% end %>
+			_miniradius
+			" >
+	      <h5 class="title">
+		<a href="gossip/">
+		  I heard that...</a></h5>
+	      <h4 class="content">
+		<a href="gossip/">
+		  <%= gossip['text'] %></a></h4>
+</a>
+<div class="vote">
+  <a href="gossip/#activity">
+    <span class="mark badge-tooltip"
+	  data-placement="left"
+	  data-toggle="tooltip"
+	  data-original-title="
+			       
+			       <% @votestab[i].each do |data| %>
+			       <% data.second.each do |vote| %>
+			       <% realvote = Vote.new.from_json(vote.to_json)%>
+			       <strong><%= realvote.value %> <%= realvote.login %></strong><br/>
+			       <% end %>
+			       <% end %>
+			       
+			       ">
+      <% @scores.each do |score| %>
+      <%= score[gossip['id'].to_s] %>
+      <% end %>
+    </span>
+  </a>
+  <%= link_to 'True', { :controller => 'votes', :action => 'voteForGossip', :idGossip => gossip['id'] }, { :method => :post, :class => "button true" } %>
+  <%= link_to 'False', { :controller => 'votes', :action => 'voteAgainstGossip', :idGossip => gossip['id'] }, { :method => :post, :class => "button false" } %>
+  
+</div>
+<div class="foot">
+  <a href="/gossips/<%= gossip['id'] %>"> comment(s)</a> |
+	<a href="/gossips/new">Share a gossip</a>
+      </div>
+    </div>
+
+
+<% i = i + 1%>
+  <% end %>
+
+	<h1 class="separator-title">Member</h1>
+	  <p>
+	    <% @members_info.each do | info |%>
+	    <%= info %></br>
+	    <% end %>
+</p>
+	  <%= button_to("Add member", :action => "addmember", :id => @group.id) %>
+
 	</aside> <!-- side -->
       </div>
       

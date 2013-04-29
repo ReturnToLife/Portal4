@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @ressource.name %>
+</p>
+
+<p>
+  <b>Borrow date:</b>
+  <%= @ressource.borrow_date %>
+</p>
+
+<p>
+  <b>Estimate date:</b>
+  <%= @ressource.estimate_date %>
+</p>
+
+<p>
+  <b>Status:</b>
+<% if @ressource.status == 1%>
+free
+<% else %>
+occuped
+<% end %>
+
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @login %>
+</p>
+
+<p>
+  <b>Group:</b>
+  <%= @group_name %>
+</p>
+
+<p>
+  <b>Commentary:</b>
+  <%= @ressource.commentary %>
+</p>
+
+
+<a href="/ressources/<%= @ressource.id %>/edit?group_id=<%= @group_id %>">Edit</a><br>
+<a href="/groups/<%= @group_id %>">Back to Group page</a> | 
+<a href="/ressources?group_id=<%= @group_id %>">Back to Ressource Page</a>

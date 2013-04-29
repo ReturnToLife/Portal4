@@ -1,4 +1,7 @@
 Client::Application.routes.draw do
+  resources :ressources
+
+
   resources :events
 
   get "login/index"
@@ -46,6 +49,7 @@ Client::Application.routes.draw do
   
   resources :jobs
 
+  match "groups/fail" => "groups#fail"
   match "groups/:id/savemember" => "groups#savemember"
 
   match "groups/:id/addmember" => "groups#addmember"

@@ -19,9 +19,7 @@
     <li><a href="#gossips">Gossips</a></li>
     <li><a href="#members">Members</a></li>
     <li><a href="#enroll">Enroll</a></li>
-    <li><a href="#store">Store</a></li>
-    <li><a href="#local">Local</a></li>
-    <li><a href="#treasury">Treasury</a></li>
+    <li><a href="/ressources?group_id=<%= @group.id %>">Ressource</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul> 
 
@@ -181,8 +179,9 @@
 	    <%= info %></br>
 	    <% end %>
 </p>
+<%if @is_admin == true %>
 	  <%= button_to("Add member", :action => "addmember", :id => @group.id) %>
-
+<%end%>
 	</aside> <!-- side -->
       </div>
       

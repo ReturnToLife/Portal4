@@ -1,0 +1,42 @@
+<h1>Listing ressources of <%= @group_name %>'s Group</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Borrow date</th>
+    <th>Estimate date</th>
+    <th>Status</th>
+    <th>User</th>
+    <th>Commentary</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ressources.each do |ressource| %>
+  <tr>
+    <td><%= ressource.name %></td>
+    <td><%= ressource.borrow_date %></td>
+    <td><%= ressource.estimate_date %></td>
+    <td>
+<% if ressource.status == 1%>
+free
+<% else %>
+occuped
+<% end %>
+</td>
+    <td><%= ressource.user_id %></td>
+
+    <td><%= ressource.commentary %></td>
+    <td><a href="/ressources/<%= ressource.id%>?group_id=<%= @group_id%>">Show</a></td>
+    <td><a href="/ressources/<%= ressource.id%>/edit?group_id=<%= @group_id%>">Edit</a></td>
+    <td><a href="/ressources/<%= ressource.id%>?group_id=<%= @group_id%>" rel="nofollow" data-method="delete" data-confirm="Are you sure?">Destroy</a></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<a href="/groups/<%= @group_id %>">Back to group page</a>
+<a href="/ressources/new?group_id=<%= @group_id %>">New Ressource</a>
+

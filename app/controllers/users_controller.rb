@@ -65,17 +65,10 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
 
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    uri = URI.parse('http://0.0.0.0:3000/users/' + params[:id] + '/update.json' )
+    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], :file => params[:user][:photo].tempfile.read, :filename => params[:user][:photo].original_filename, :content_type => params[:user][:photo].content_type})
+    redirect_to("/users/" + params[:id])
   end
 
   # DELETE /users/1

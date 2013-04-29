@@ -86,7 +86,6 @@ class EventsController < ApplicationController
 
 
 #    @event = Event.find(params[:id])
-    debugger
     if @response.code == "204"
       redirect_to("/events/" + params[:id])
     else

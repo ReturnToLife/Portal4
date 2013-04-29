@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag 'bootstrap-responsive.css' %>
     <%= stylesheet_link_tag 'style.css' %>
+     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -104,11 +105,13 @@
       </div>
     </div> <!-- main -->
 
-    <%= javascript_include_tag 'jquery.js' %>
-    <%= javascript_include_tag 'bootstrap.min.js' %>
-    <%= javascript_include_tag 'preset.js' %>
-    <%= javascript_include_tag 'jquery.jsonp.js' %>
-    <%= javascript_include_tag 'epitech.js' %>
-    <%= javascript_include_tag 'home.js' %>
+<%= javascript_include_tag 'jquery.js' %>
+<%= javascript_include_tag 'bootstrap.min.js' %>
+<%= javascript_include_tag 'preset.js' %>
+<%= javascript_include_tag 'jquery.jsonp.js' %>
+<%= javascript_include_tag 'epitech.js' %> 
+<%= javascript_include_tag 'home.js' %>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
   </body>
 </html>

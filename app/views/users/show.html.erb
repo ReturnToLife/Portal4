@@ -1,12 +1,62 @@
+<div class="profile-perso-information" style="margin-top: 14px;height: 113px;">
+<img src="http://127.0.0.1:3000<%= @user.photo.url(:small) %>" style="border-radius: 6px 6px 6px 6px; float:left" />
+<div style="height: 100%;float:left;margin-left:10px">
+<h4> <%= @user.firstname %> <%= @user.lastname %> |  <%= @user.login %></h4>
+<p>City:  <%= @user.city %> </p>
+<p>uid:  <%= @user.uid %> </p>
+<p>email:  <%= @user.email %> </p>
+</div>
+</div>
 
-<!--<%= image_tag @user.photo.url(:small) %>-->
-<img src="http://127.0.0.1:3000<%= @user.photo.url(:small) %>" />
-<h3>Articles</h3>
-<% @arrayArticles.each do |article| %>
-<p> title: <%= article.title %> </p>
+<br />
+<br />
+<br />
+<br />
+
+<% if @arrayArticles.any? %>
+<table class="article" border="1" style="float:left;margin-right: 40px">
+    <tr>
+      <th>Wrote <%= @arrayArticles.length %> articles </th>
+    </tr>
+    <% @arrayArticles.each do |article| %>
+    <tr>
+      <td><%= article.title %> </td>
+    </tr>
+    <% end %>
+</table>
 <% end %>
 
-<h3>Comments by user </h3>
-<% @arrayAcomments.each do |comment| %>
-<p>Comment: <%= comment.body %>
+<% if @arrayAcomments.any? %>
+<table class="article" border="1" style="float:left">
+    <tr>
+      <th>Wrote <%= @arrayAcomments.length %> comments </th>
+    </tr>
+    <% @arrayAcomments.each do |comment| %>
+    <tr>
+      <td><%= comment.body %> </td>
+    </tr>
+    <% end %>
+</table>
 <% end %>
+
+
+<div id="dialog" style="show:hidden">
+  <%= form_for(@user, :url => user_path(@user), :method => "put", :html => { :multipart => true }) do |f| %>
+  <div><%= f.label 'Photo' %><br />
+  <%= f.file_field :photo %></div>
+
+  <div><%= f.submit "Update photo" %></div>
+<% end %>
+</div>
+
+<script>
+
+$(".profile-perso-information img").hover(function() {
+$(this).css({"cursor":"hand", "cursor": "pointer"});
+});
+
+$(".profile-perso-information img").click(function() {
+$("#dialog").dialog();
+});
+
+</script>

@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     @arrayAcomments = []
     hash["articles"].each {|article| @arrayArticles.append(Article.new(article))}
     hash["acomments"].each {|comment| @arrayAcomments.append(Acomment.new(comment))}
+    @is_me = hash["isme"]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -71,9 +72,10 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-
-    uri = URI.parse('http://0.0.0.0:3000/users/' + params[:id] + '/update.json' )
-    @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], :file => params[:user][:photo].tempfile.read, :filename => params[:user][:photo].original_filename, :content_type => params[:user][:photo].content_type})
+    if params[:user]
+      uri = URI.parse('http://0.0.0.0:3000/users/' + params[:id] + '/update.json' )
+      @response = Net::HTTP.post_form(uri, {"auth_token" => session[:api_token], :file => params[:user][:photo].tempfile.read, :filename => params[:user][:photo].original_filename, :content_type => params[:user][:photo].content_type})
+    end
     redirect_to("/users/" + params[:id])
   end
 

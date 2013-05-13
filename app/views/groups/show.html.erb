@@ -181,7 +181,7 @@
 	    <%= info %></br>
 	    <% end %>
 </p>
-<%if @is_admin == true %>
+<%if @is_admin == "true" %>
 	  <%= button_to("Add member", :action => "addmember", :id => @group.id) %>
 <%end%>
 	</aside> <!-- side -->

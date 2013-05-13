@@ -14,8 +14,9 @@
 
 <div id="social" class="row-fluid">
 <div class="span6">
-  <% if @arrayArticles.any? %>
+  
   <div id="comments" class="well social-bar">
+    <% if @arrayArticles.any? %>
     <h2>Wrote <%= @arrayArticles.length %> articles</h2>
     <hr>
     <% @arrayArticles.each do |article| %>
@@ -40,6 +41,7 @@
 </div>
 </div>
 
+<% if @is_me == "true" %>
 <div id="dialog" style="show:hidden">
   <%= form_for(@user, :url => user_path(@user), :method => "put", :html => { :multipart => true }) do |f| %>
   <div><%= f.label 'Photo' %><br />
@@ -48,7 +50,7 @@
   <div><%= f.submit "Update photo" %></div>
 <% end %>
 </div>
-
+<% end %>
 <script>
 
 $(".profile-perso-information img").hover(function() {
